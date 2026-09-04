@@ -18,10 +18,18 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   footer.innerHTML = html;
 
-  // Resolve relative image paths against the footer fragment base.
+  // Resolve bare relative image paths against the footer fragment base.
+  // Leave absolute URLs (http/https), data: URIs, root paths (/), and DA-managed
+  // media (./media_...) untouched.
   footer.querySelectorAll('img[src]').forEach((img) => {
     const src = img.getAttribute('src');
-    if (src && !src.startsWith('/') && !/^https?:\/\//.test(src)) {
+    if (
+      src
+      && !src.startsWith('/')
+      && !src.startsWith('./')
+      && !src.startsWith('data:')
+      && !/^https?:\/\//.test(src)
+    ) {
       img.setAttribute('src', `${base}${src}`);
     }
   });

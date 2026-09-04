@@ -70,11 +70,18 @@ export default async function decorate(block) {
   nav.id = 'nav';
   nav.innerHTML = html;
 
-  // Resolve relative image paths (e.g. images/wknd-logo.svg) against the nav fragment base,
-  // so the logo loads regardless of the current page's path depth.
+  // Resolve bare relative image paths (e.g. images/wknd-logo.svg) against the nav
+  // fragment base. Leave absolute URLs, data: URIs, root paths, and DA-managed
+  // media (./media_...) untouched.
   nav.querySelectorAll('img[src]').forEach((img) => {
     const src = img.getAttribute('src');
-    if (src && !src.startsWith('/') && !/^https?:\/\//.test(src)) {
+    if (
+      src
+      && !src.startsWith('/')
+      && !src.startsWith('./')
+      && !src.startsWith('data:')
+      && !/^https?:\/\//.test(src)
+    ) {
       img.setAttribute('src', `${base}${src}`);
     }
   });
