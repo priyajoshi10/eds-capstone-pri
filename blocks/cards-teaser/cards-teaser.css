@@ -14,6 +14,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  min-width: 0; /* allow grid track to shrink so nowrap description ellipsis-clamps instead of overflowing */
   background-color: transparent;
   border: none;
 }
@@ -34,6 +35,7 @@
 /* card body: title link + trailing description text share one <p> */
 .cards-teaser .cards-teaser-card-body {
   margin: 0;
+  min-width: 0;
 }
 
 /* description text (bare text node in the <p>) — single-line, ellipsis-truncated */
