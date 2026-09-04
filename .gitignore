@@ -19,3 +19,4 @@ tools/importer/*.bundle.js
 tools/importer/reports/
 tools/importer/urls-*-rep.txt
 tools/importer/urls-userlist-*.txt
+tools/importer/urls-pending-*.txt
