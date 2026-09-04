@@ -108,7 +108,9 @@ export default async function decorate(block) {
     if (topList) topList.classList.add('nav-list');
     navSections.querySelectorAll(':scope > ul > li').forEach((li) => {
       li.classList.add('nav-item');
-      const link = li.querySelector(':scope > a');
+      // The Home label may be a direct <a> (local) or wrapped in a <p> (DA/EDS),
+      // so match the direct link or the first-child paragraph's link.
+      const link = li.querySelector(':scope > a, :scope > p > a');
       if (link && link.textContent.trim().toLowerCase() === 'home') {
         li.classList.add('nav-item-home');
         link.classList.add('nav-trigger');

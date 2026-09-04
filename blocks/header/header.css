@@ -267,8 +267,10 @@ header nav .nav-search input {
     font-size: var(--body-font-size-xs);
   }
 
-  /* On desktop the logo is the Home link, so hide the redundant Home label */
-  header nav .nav-sections .nav-item-home > a {
+  /* On desktop the logo is the Home link, so hide the redundant Home label
+     (direct <a> locally, or a <p> wrapper on DA/EDS). */
+  header nav .nav-sections .nav-item-home > a,
+  header nav .nav-sections .nav-item-home > p {
     display: none;
   }
 
