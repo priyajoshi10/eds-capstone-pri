@@ -1,61 +1,99 @@
-.accordion-faq details {
-  border: 1px solid #dadada;
+/*
+ * accordion-faq -- WKND FAQ accordion
+ * Design extracted from https://wknd.site/us/en/faqs.html computed styles.
+ * Decorated DOM (see accordion-faq.js):
+ *   .accordion-faq
+ *     details.accordion-faq-item
+ *       summary.accordion-faq-item-label   <- question
+ *       div.accordion-faq-item-body        <- answer
+ */
+
+.accordion-faq {
+  /* subtle divider tone derived from the WKND text color */
+  --accordion-faq-divider: rgb(32 32 32 / 15%);
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-.accordion-faq details + details {
-  margin-top: 24px;
+/* Each Q&A item -- divider line between items */
+.accordion-faq .accordion-faq-item {
+  border-bottom: 1px solid var(--accordion-faq-divider);
 }
 
-.accordion-faq details p {
-  margin-bottom: 0.8em;
+.accordion-faq .accordion-faq-item:first-of-type {
+  border-top: 1px solid var(--accordion-faq-divider);
 }
 
-.accordion-faq details summary {
+/* Question row (summary) -- WKND heading treatment */
+.accordion-faq .accordion-faq-item-label {
   position: relative;
-  padding: 0 16px;
-  padding-right: 46px;
+  display: block;
+  padding: 16px 46px 16px 8px;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l); /* 22px mobile / 24px desktop */
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
   cursor: pointer;
   list-style: none;
-  overflow: auto;
-  transition: background-color 0.2s;
+  transition: color 0.15s ease;
 }
 
-.accordion-faq details[open] summary {
-  background-color: var(--light-color);
-}
-
-.accordion-faq details summary:focus,
-.accordion-faq details summary:hover {
-  background-color: var(--light-color);
-}
-
-.accordion-faq details summary::-webkit-details-marker {
+/* Remove native disclosure marker */
+.accordion-faq .accordion-faq-item-label::-webkit-details-marker {
   display: none;
 }
 
-.accordion-faq details summary::after {
+/* EDS auto-wraps the question text in a <p>; strip its default margins */
+.accordion-faq .accordion-faq-item-label p {
+  margin: 0;
+}
+
+.accordion-faq .accordion-faq-item-label:hover {
+  color: var(--link-color);
+}
+
+/* Visible keyboard focus state */
+.accordion-faq .accordion-faq-item-label:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: -2px;
+}
+
+/* Plus / minus expand indicator on the right (CSS-drawn, mirrors WKND icon font) */
+.accordion-faq .accordion-faq-item-label::after {
   content: '';
   position: absolute;
   top: 50%;
-  right: 18px;
-  transform: translateY(-50%) rotate(135deg);
-  width: 6px;
-  height: 6px;
-  border: 2px solid;
-  border-width: 2px 2px 0 0;
-  transition: transform 0.2s;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+
+  /* horizontal bar of the plus */
+  background:
+    linear-gradient(var(--text-color), var(--text-color)) center / 18px 2px no-repeat,
+    linear-gradient(var(--text-color), var(--text-color)) center / 2px 18px no-repeat;
+  transition: transform 0.2s ease;
 }
 
-.accordion-faq details[open] summary::after {
-  transform: translateY(-50%) rotate(-45deg);
+/* Open state: hide the vertical bar -> minus, and rotate for a smooth toggle */
+.accordion-faq .accordion-faq-item[open] .accordion-faq-item-label::after {
+  background:
+    linear-gradient(var(--text-color), var(--text-color)) center / 18px 2px no-repeat;
+  transform: rotate(180deg);
 }
 
-.accordion-faq details .accordion-faq-item-body {
-  padding: 0 16px;
+/* Answer body -- comfortable body size */
+.accordion-faq .accordion-faq-item-body {
+  padding: 0 46px 16px 8px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s); /* 16px, comfortable */
+  line-height: 1.75;
+  color: var(--text-color);
 }
 
-.accordion-faq details[open] .accordion-faq-item-body {
-  border-top: 1px solid #dadada;
-  background-color: var(--background-color);
+.accordion-faq .accordion-faq-item-body p {
+  margin: 0 0 0.75em;
+}
+
+.accordion-faq .accordion-faq-item-body p:last-child {
+  margin-bottom: 0;
 }

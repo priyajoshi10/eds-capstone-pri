@@ -1,27 +1,83 @@
-.cards-teaser > ul {
+/* WKND cards-teaser — responsive teaser-card grid (image + linked title + short description).
+   Values extracted from https://wknd.site/us/en.html (.image-list.list). */
+
+.cards-teaser ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 32px 14px;
 }
 
-.cards-teaser > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+.cards-teaser ul > li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
 
-.cards-teaser .cards-teaser-card-body {
-  margin: 16px;
-}
-
+/* image on top, fixed WKND teaser aspect (260x200 = 13/10), cropped */
 .cards-teaser .cards-teaser-card-image {
+  margin: 0;
   line-height: 0;
 }
 
-.cards-teaser > ul > li img {
+.cards-teaser .cards-teaser-card-image img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 13 / 10;
   object-fit: cover;
+}
+
+/* card body: title link + trailing description text share one <p> */
+.cards-teaser .cards-teaser-card-body {
+  margin: 0;
+}
+
+/* description text (bare text node in the <p>) — single-line, ellipsis-truncated */
+.cards-teaser .cards-teaser-card-body p {
+  margin: 9px 0 0;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: rgb(105 105 105);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* linked card title — dark, uppercase, on its own line above the description */
+.cards-teaser .cards-teaser-card-body p a {
+  display: block;
+  margin: 0 0 16px;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: normal;
+}
+
+.cards-teaser .cards-teaser-card-body p a:hover,
+.cards-teaser .cards-teaser-card-body p a:focus-visible {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  .cards-teaser ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-teaser ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
