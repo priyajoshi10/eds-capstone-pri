@@ -1,0 +1,117 @@
+{
+  "templates": [
+    {
+      "name": "home-landing",
+      "urls": [
+        "https://wknd.site/",
+        "https://wknd.site/ca/en.html",
+        "https://wknd.site/ca/fr.html",
+        "https://wknd.site/ch/de.html",
+        "https://wknd.site/ch/fr.html",
+        "https://wknd.site/ch/it.html",
+        "https://wknd.site/de/de.html",
+        "https://wknd.site/es/es.html",
+        "https://wknd.site/fr/fr.html",
+        "https://wknd.site/it/it.html",
+        "https://wknd.site/us/en.html",
+        "https://wknd.site/us/es.html"
+      ],
+      "coverageGaps": [],
+      "description": "Locale landing page with a full-width hero carousel, a featured article teaser with side text, and multiple card-grid content rows",
+      "blocks": []
+    },
+    {
+      "name": "listing-profile-grid",
+      "urls": [
+        "https://wknd.site/ca/en/about-us.html",
+        "https://wknd.site/ca/en/magazine.html",
+        "https://wknd.site/ca/en/magazine/members-only.html",
+        "https://wknd.site/us/en/about-us.html",
+        "https://wknd.site/us/en/magazine.html"
+      ],
+      "coverageGaps": [],
+      "description": "Content page with a title header followed by repeating rows of circular avatar/thumbnail cards arranged in a multi-column grid",
+      "blocks": []
+    },
+    {
+      "name": "adventure-detail",
+      "urls": [
+        "https://wknd.site/ca/en/adventures/bali-surf-camp.html",
+        "https://wknd.site/ca/en/adventures/beervana-portland.html",
+        "https://wknd.site/ca/en/adventures/climbing-new-zealand.html",
+        "https://wknd.site/ca/en/adventures/colorado-rock-climbing.html",
+        "https://wknd.site/ca/en/adventures/cycling-southern-utah.html",
+        "https://wknd.site/ca/en/adventures/cycling-tuscany.html",
+        "https://wknd.site/ca/en/adventures/downhill-skiing-wyoming.html",
+        "https://wknd.site/ca/en/adventures/gastronomic-marais-tour.html",
+        "https://wknd.site/ca/en/adventures/napa-wine-tasting.html",
+        "https://wknd.site/ca/en/adventures/riverside-camping-australia.html",
+        "https://wknd.site/ca/en/adventures/ski-touring-mont-blanc.html",
+        "https://wknd.site/ca/en/adventures/surf-camp-costa-rica.html",
+        "https://wknd.site/ca/en/adventures/tahoe-skiing.html",
+        "https://wknd.site/ca/en/adventures/west-coast-cycling.html",
+        "https://wknd.site/ca/en/adventures/whistler-mountain-biking.html",
+        "https://wknd.site/ca/en/adventures/yosemite-backpacking.html",
+        "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+        "https://wknd.site/us/en/adventures/beervana-portland.html",
+        "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+        "https://wknd.site/us/en/adventures/colorado-rock-climbing.html",
+        "https://wknd.site/us/en/adventures/cycling-southern-utah.html",
+        "https://wknd.site/us/en/adventures/cycling-tuscany.html",
+        "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html",
+        "https://wknd.site/us/en/adventures/gastronomic-marais-tour.html",
+        "https://wknd.site/us/en/adventures/napa-wine-tasting.html",
+        "https://wknd.site/us/en/adventures/riverside-camping-australia.html",
+        "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html",
+        "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html",
+        "https://wknd.site/us/en/adventures/tahoe-skiing.html",
+        "https://wknd.site/us/en/adventures/west-coast-cycling.html",
+        "https://wknd.site/us/en/adventures/whistler-mountain-biking.html",
+        "https://wknd.site/us/en/adventures/yosemite-backpacking.html"
+      ],
+      "coverageGaps": [],
+      "description": "Detail page with a hero banner, a left sidebar of attribute label/value pairs, and a tabbed main content area with body copy and images",
+      "blocks": []
+    },
+    {
+      "name": "adventure-listing",
+      "urls": [
+        "https://wknd.site/ca/en/adventures.html",
+        "https://wknd.site/us/en/adventures.html"
+      ],
+      "coverageGaps": [],
+      "description": "Category landing page with a title, hero banner with intro text overlay, and a filterable multi-column grid of teaser cards",
+      "blocks": []
+    },
+    {
+      "name": "faq-page",
+      "urls": [
+        "https://wknd.site/ca/en/faqs.html",
+        "https://wknd.site/us/en/faqs.html"
+      ],
+      "coverageGaps": [],
+      "description": "Two-column page with a title, large intro image and paragraph on the left, an expandable accordion list, and a contact info sidebar",
+      "blocks": []
+    },
+    {
+      "name": "article-detail",
+      "urls": [
+        "https://wknd.site/ca/en/magazine/arctic-surfing.html",
+        "https://wknd.site/ca/en/magazine/guide-la-skateparks.html",
+        "https://wknd.site/ca/en/magazine/members-only/alaskan-adventure.html",
+        "https://wknd.site/ca/en/magazine/members-only/fly-fishing-the-amazon.html",
+        "https://wknd.site/ca/en/magazine/san-diego-surf.html",
+        "https://wknd.site/ca/en/magazine/ski-touring.html",
+        "https://wknd.site/ca/en/magazine/western-australia.html",
+        "https://wknd.site/us/en/magazine/arctic-surfing.html",
+        "https://wknd.site/us/en/magazine/guide-la-skateparks.html",
+        "https://wknd.site/us/en/magazine/san-diego-surf.html",
+        "https://wknd.site/us/en/magazine/ski-touring.html",
+        "https://wknd.site/us/en/magazine/western-australia.html"
+      ],
+      "coverageGaps": [],
+      "description": "Long-form article page with a hero image, title and byline, body text with inline images and subheadings, and a related-stories sidebar",
+      "blocks": []
+    }
+  ]
+}

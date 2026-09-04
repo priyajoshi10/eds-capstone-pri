@@ -1,0 +1,12 @@
+{
+  "sites": {
+    "eds-capstone-pri": {
+      "previewOrg": "priyajoshi10",
+      "previewSite": "eds-capstone-pri",
+      "contentHostUrl": "https://content.da.live/priyajoshi10/eds-capstone-pri/"
+    }
+  },
+  "features": [
+    "site-planning"
+  ]
+}
