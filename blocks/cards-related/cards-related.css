@@ -1,0 +1,61 @@
+/* cards-related: text-only related-stories list (title + date, no images).
+   Derived from the Block Collection cards block, styled for a stacked
+   "SHARE THIS STORY" / up-next sidebar list rather than an image grid. */
+
+.cards-related > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cards-related > ul > li {
+  border-top: 1px solid #dadada;
+  padding: 16px 0;
+}
+
+.cards-related > ul > li:last-child {
+  border-bottom: 1px solid #dadada;
+}
+
+.cards-related .cards-related-card-body {
+  margin: 0;
+}
+
+.cards-related .cards-related-card-body a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cards-related .cards-related-card-body a:hover {
+  text-decoration: underline;
+}
+
+/* Story title */
+.cards-related .cards-related-card-body :is(h1, h2, h3, h4, h5, h6, p:first-child) {
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-size: var(--body-font-size-s, 16px);
+  line-height: 1.3;
+}
+
+/* Publication date */
+.cards-related .cards-related-card-body p:last-child {
+  margin: 0;
+  font-size: var(--body-font-size-xs, 14px);
+  color: #6d6d6d;
+}
+
+/* Preserve image support in case a related item ever includes a thumbnail */
+.cards-related .cards-related-card-image {
+  line-height: 0;
+  margin-bottom: 8px;
+}
+
+.cards-related > ul > li img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}

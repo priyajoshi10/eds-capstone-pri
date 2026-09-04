@@ -1,0 +1,14 @@
+{
+  "type": "da",
+  "sites": {
+    "eds-capstone-pri": {
+      "previewOrg": "priyajoshi10",
+      "previewSite": "eds-capstone-pri",
+      "contentHostUrl": "https://content.da.live/priyajoshi10/eds-capstone-pri/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  },
+  "features": [
+    "site-planning"
+  ]
+}

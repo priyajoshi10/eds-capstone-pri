@@ -1,0 +1,41 @@
+{
+  "variantName": "carousel-hero",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-09-04T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd.site/us/en.html",
+    "originPage": "WKND locale homepage (home-landing template)",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + description + CTA",
+    "buttonCount": 1,
+    "imageCount": 1,
+    "slideCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "locale/landing homepages",
+      "full-width rotating hero banners",
+      "pages needing multiple featured intros above the fold"
+    ],
+    "notSuitableFor": [
+      "single static hero (use hero variant instead)",
+      "text-only content sections",
+      "small inline galleries"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/us/en", "/us/en/adventures/bali-surf-camp"],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-04T00:00:00.000Z",
+    "notes": "Reused as the full-width hero image banner on the adventure-detail template (bali-surf-camp)."
+  }
+}
