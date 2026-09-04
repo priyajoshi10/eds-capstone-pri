@@ -1,0 +1,68 @@
+.cards-profile > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 40px 24px;
+}
+
+.cards-profile > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--background-color);
+}
+
+.cards-profile .cards-profile-card-image {
+  line-height: 0;
+  width: 100%;
+  max-width: 200px;
+}
+
+.cards-profile .cards-profile-card-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.cards-profile .cards-profile-card-body {
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.cards-profile .cards-profile-card-body h3 {
+  margin: 0;
+}
+
+.cards-profile .cards-profile-card-body h5 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Social icon row */
+.cards-profile .cards-profile-social {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.cards-profile .cards-profile-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #2b2b2b;
+  color: #fff;
+  border-radius: 2px;
+}

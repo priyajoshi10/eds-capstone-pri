@@ -1,4 +1,7 @@
 {
+  "metadata": {
+    "projectType": "da"
+  },
   "templates": [
     {
       "name": "home-landing",
@@ -18,7 +21,94 @@
       ],
       "coverageGaps": [],
       "description": "Locale landing page with a full-width hero carousel, a featured article teaser with side text, and multiple card-grid content rows",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "carousel-hero",
+          "instances": [
+            ".carousel.cmp-carousel--hero"
+          ]
+        },
+        {
+          "name": "columns-featured",
+          "instances": [
+            ".teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards-teaser",
+          "instances": [
+            ".image-list.list"
+          ]
+        },
+        {
+          "name": "hero-adventure",
+          "instances": [
+            ".teaser.cmp-teaser--hero"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1-hero-carousel",
+          "name": "Hero carousel",
+          "selector": [
+            ".carousel.cmp-carousel--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2-featured-article",
+          "name": "Featured article teaser",
+          "selector": [
+            ".teaser.cmp-teaser--featured"
+          ],
+          "style": "highlight",
+          "blocks": [
+            "columns-featured"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-3-recent-articles",
+          "name": "Recent Articles",
+          "selector": [
+            ".image-list.list"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-teaser"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4-next-adventures",
+          "name": "Next Adventures",
+          "selector": [
+            ".teaser.cmp-teaser--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-adventure"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5-destinations",
+          "name": "Where do you want to go?",
+          "selector": [
+            ".image-list.list"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-teaser"
+          ],
+          "defaultContent": []
+        }
+      ]
     },
     {
       "name": "listing-profile-grid",
@@ -31,7 +121,13 @@
       ],
       "coverageGaps": [],
       "description": "Content page with a title header followed by repeating rows of circular avatar/thumbnail cards arranged in a multi-column grid",
-      "blocks": []
+      "blocks": [
+        { "name": "cards-profile", "instances": [".experiencefragment.cmp-experience-fragment--contributor"] }
+      ],
+      "sections": [
+        { "id": "s1-title", "name": "Page title", "selector": ["main.cmp-layout-container--fixed .title:nth-of-type(1)"], "style": null, "blocks": [], "defaultContent": ["main.cmp-layout-container--fixed .title"] },
+        { "id": "s2-profiles", "name": "Profile card grids", "selector": [".experiencefragment.cmp-experience-fragment--contributor"], "style": null, "blocks": ["cards-profile"], "defaultContent": [] }
+      ]
     },
     {
       "name": "adventure-detail",
@@ -71,7 +167,18 @@
       ],
       "coverageGaps": [],
       "description": "Detail page with a hero banner, a left sidebar of attribute label/value pairs, and a tabbed main content area with body copy and images",
-      "blocks": []
+      "blocks": [
+        { "name": "carousel-hero", "instances": [".carousel.cmp-carousel--mini"] },
+        { "name": "columns-attributes", "instances": [".contentfragment.cmp-contentfragment--elements"] },
+        { "name": "tabs-adventure", "instances": [".tabs.panelcontainer"] }
+      ],
+      "sections": [
+        { "id": "s1-breadcrumb", "name": "Breadcrumb", "selector": [".breadcrumb.cmp-breadcrumb--fixed"], "style": null, "blocks": [], "defaultContent": [".breadcrumb.cmp-breadcrumb--fixed"] },
+        { "id": "s2-hero", "name": "Hero image carousel", "selector": [".carousel.cmp-carousel--mini"], "style": null, "blocks": ["carousel-hero"], "defaultContent": [] },
+        { "id": "s3-title", "name": "Adventure title", "selector": [".title.cmp-title--underline"], "style": null, "blocks": [], "defaultContent": [".title.cmp-title--underline"] },
+        { "id": "s4-attributes", "name": "Adventure attributes sidebar", "selector": [".contentfragment.cmp-contentfragment--elements"], "style": null, "blocks": ["columns-attributes"], "defaultContent": [] },
+        { "id": "s5-tabs", "name": "Tabbed main content", "selector": [".tabs.panelcontainer"], "style": null, "blocks": ["tabs-adventure"], "defaultContent": [] }
+      ]
     },
     {
       "name": "adventure-listing",
@@ -81,7 +188,16 @@
       ],
       "coverageGaps": [],
       "description": "Category landing page with a title, hero banner with intro text overlay, and a filterable multi-column grid of teaser cards",
-      "blocks": []
+      "blocks": [
+        { "name": "hero-adventure", "instances": [".teaser.cmp-teaser--hero"] },
+        { "name": "tabs-adventure", "instances": [".tabs.panelcontainer"] }
+      ],
+      "sections": [
+        { "id": "s1-title", "name": "Page title", "selector": ["main.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid > main.cmp-layout-container--fixed:nth-of-type(1)"], "style": null, "blocks": [], "defaultContent": [".title.cmp-title"] },
+        { "id": "s2-hero", "name": "Hero banner", "selector": [".teaser.cmp-teaser--hero"], "style": null, "blocks": ["hero-adventure"], "defaultContent": [] },
+        { "id": "s3-heading", "name": "Current Adventures heading", "selector": [".title.cmp-title--underline"], "style": null, "blocks": [], "defaultContent": [".title.cmp-title--underline"] },
+        { "id": "s4-tabs", "name": "Filterable adventure grid", "selector": [".tabs.panelcontainer"], "style": null, "blocks": ["tabs-adventure"], "defaultContent": [] }
+      ]
     },
     {
       "name": "faq-page",
@@ -91,7 +207,13 @@
       ],
       "coverageGaps": [],
       "description": "Two-column page with a title, large intro image and paragraph on the left, an expandable accordion list, and a contact info sidebar",
-      "blocks": []
+      "blocks": [
+        { "name": "accordion-faq", "instances": [".accordion.panelcontainer"] }
+      ],
+      "sections": [
+        { "id": "s1-main", "name": "FAQ main content", "selector": ["main > .cmp-container > .aem-Grid > .container.responsivegrid:nth-of-type(1)"], "style": null, "blocks": ["accordion-faq"], "defaultContent": [".title.cmp-title", ".image", ".text"] },
+        { "id": "s2-contact", "name": "Need more help? contact sidebar", "selector": ["main > .cmp-container > .aem-Grid > .container.responsivegrid:nth-of-type(2)"], "style": null, "blocks": [], "defaultContent": ["main > .cmp-container > .aem-Grid > .container.responsivegrid:nth-of-type(2)"] }
+      ]
     },
     {
       "name": "article-detail",
@@ -111,7 +233,14 @@
       ],
       "coverageGaps": [],
       "description": "Long-form article page with a hero image, title and byline, body text with inline images and subheadings, and a related-stories sidebar",
-      "blocks": []
+      "blocks": [
+        { "name": "cards-related", "instances": [".list.cmp-list--upnext"] }
+      ],
+      "sections": [
+        { "id": "s1-hero", "name": "Lead hero image", "selector": ["main.cmp-layout-container--fixed > div.cmp-container > div.aem-Grid > div.image"], "style": null, "blocks": [], "defaultContent": ["main.cmp-layout-container--fixed .image"] },
+        { "id": "s2-body", "name": "Article body", "selector": ["main.aem-GridColumn--default--8"], "style": null, "blocks": [], "defaultContent": ["main.aem-GridColumn--default--8"] },
+        { "id": "s3-related", "name": "Related stories sidebar", "selector": [".list.cmp-list--upnext"], "style": null, "blocks": ["cards-related"], "defaultContent": [] }
+      ]
     }
   ]
 }

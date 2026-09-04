@@ -1,0 +1,42 @@
+{
+  "variantName": "columns-attributes",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-04T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+    "originPage": "WKND adventure detail page (adventure-detail template)",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "feature",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "label + value rows",
+    "buttonCount": 0,
+    "imageCount": 0,
+    "columnCount": 2,
+    "rowCount": 6
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "attribute/spec label-value lists (activity, price, difficulty, etc.)",
+      "detail-page sidebars pairing a field label with its value",
+      "compact text-only two-column key/value layouts"
+    ],
+    "notSuitableFor": [
+      "image + text feature rows (use columns-featured)",
+      "repeating image cards (use cards variant)",
+      "full-width hero banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/us/en/adventures/bali-surf-camp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-04T00:00:00.000Z",
+    "notes": "Attribute sidebar (Activity, Adventure Type, Trip Length, Group Size, Difficulty, Price) on the adventure-detail template."
+  }
+}
