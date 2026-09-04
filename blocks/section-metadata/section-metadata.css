@@ -1,0 +1,7 @@
+/* Section Metadata is a configuration-only block — it renders nothing itself.
+   The block decorator applies its key/value rows to the parent section and
+   removes the block from the DOM. This rule is a safety net in case the JS
+   has not run yet (e.g. before decoration), keeping the raw table hidden. */
+.section-metadata {
+  display: none;
+}
