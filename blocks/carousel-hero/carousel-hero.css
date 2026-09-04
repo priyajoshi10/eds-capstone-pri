@@ -139,13 +139,17 @@
 }
 
 .carousel-hero .carousel-hero-slide-indicator button {
-  width: 12px;
-  height: 12px;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
   margin: 0;
-  padding: 0;
+
+  /* 6px padding keeps the visible dot 12px while the tap target is a full 24px (WCAG 2.5.8) */
+  padding: 6px;
   border: none;
   border-radius: 50%;
   background-color: #dadada;
+  background-clip: content-box;
   cursor: pointer;
   transition: background-color 0.2s;
 }

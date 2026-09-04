@@ -82,6 +82,20 @@ function createSlide(row, slideIndex, carouselId) {
     slide.append(column);
   });
 
+  // LCP optimization: the first slide's image is the hero/LCP candidate — load it
+  // eagerly at high priority; hidden slides load lazily at low priority so they
+  // don't contend for bandwidth with the LCP image.
+  const img = slide.querySelector('img');
+  if (img) {
+    if (slideIndex === 0) {
+      img.setAttribute('fetchpriority', 'high');
+      img.setAttribute('loading', 'eager');
+    } else {
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('fetchpriority', 'low');
+    }
+  }
+
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
   if (labeledBy) {
     slide.setAttribute('aria-labelledby', labeledBy.getAttribute('id'));
