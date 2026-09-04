@@ -1,49 +1,35 @@
-# WKND Import Status — What's Done, What's Left
+# Verify Magazine Pages Render in Preview
 
-## Answer up front
-**No — not all pages are imported yet.** Only **17 content pages** exist so far: the full **home-landing** set (12 locale homepages) plus the **5 representative pages** (one per remaining template). Everything else — including most of your 26-URL US/EN list — has **not** been imported yet.
+## Objective
+Open the preview URLs for the magazine listing page and all 5 article-detail pages to confirm they render end-to-end (blocks decorate, header/footer resolve, content intact).
 
-## Current state (`content/**.plain.html` on disk)
-**Imported (17 pages + nav + footer):**
-- home-landing (12): `index`, `ca/en`, `ca/fr`, `ch/de`, `ch/fr`, `ch/it`, `de/de`, `es/es`, `fr/fr`, `it/it`, `us/en`, `us/es`
-- adventure-detail (1): `us/en/adventures/bali-surf-camp`
-- article-detail (1): `us/en/magazine/arctic-surfing`
-- listing-profile-grid (1): `us/en/about-us`
-- adventure-listing (1): `us/en/adventures`
-- faq-page (1): `us/en/faqs`
-- fragments: `nav`, `footer`
+## Which preview to check
+There are two possible preview surfaces — I need to confirm which you mean, since one requires a publish step:
 
-## Your 26-URL list: 6 done, 20 still to import
-| Template | In your list | Imported | Left to import |
-|----------|-------------:|---------:|---------------:|
-| home-landing (`us/en.html`) | 1 | 1 | 0 |
-| adventure-listing (`adventures.html`) | 1 | 1 | 0 |
-| listing-profile-grid (`about-us`, `magazine`) | 2 | 1 | 1 (`us/en/magazine.html`) |
-| faq-page (`faqs.html`) | 1 | 1 | 0 |
-| adventure-detail (`/adventures/*`) | 16 | 1 | 15 |
-| article-detail (`/magazine/<article>`) | 5 | 1 | 4 |
-| **Total** | **26** | **6** | **20** |
+| Surface | URL pattern | Ready now? |
+|---------|-------------|-----------|
+| **Local dev** (`aem up`) | `http://localhost:3000/content/us/en/magazine/...` | ✅ renders committed code + local `content/` |
+| **AEM preview** (DA-published) | `https://main--eds-capstone-pri--priyajoshi10.aem.page/us/en/magazine/...` | ⚠️ only after each page is previewed/published via admin.hlx.page |
+
+The DA upload wrote source files, but AEM `.aem.page` preview typically needs a preview/publish trigger per path before it renders live. Local preview works immediately.
+
+## Pages to verify (6)
+- `us/en/magazine` (listing)
+- `us/en/magazine/arctic-surfing`
+- `us/en/magazine/guide-la-skateparks`
+- `us/en/magazine/san-diego-surf`
+- `us/en/magazine/ski-touring`
+- `us/en/magazine/western-australia`
 
 ## Checklist
-
-### Import the 20 remaining US/EN pages (then upload all)
-- [ ] adventure-detail: import the 15 remaining `/us/en/adventures/*` pages (all except bali-surf-camp) via `import-adventure-detail.bundle.js`
-- [ ] article-detail: import the 4 remaining `/us/en/magazine/<article>` pages (guide-la-skateparks, san-diego-surf, ski-touring, western-australia) via `import-article-detail.bundle.js`
-- [ ] listing-profile-grid: import `us/en/magazine.html` via `import-listing-profile-grid.bundle.js`
-- [ ] Verify 26/26 US/EN pages now exist in `content/**.plain.html`, 0 failures
-
-### Upload everything to DA (`priyajoshi10 / eds-capstone-pri`)
-- [ ] Enumerate all `content/**.plain.html` (pages + `nav` + `footer`)
-- [ ] POST each to `https://admin.da.live/source/priyajoshi10/eds-capstone-pri/<path>.html` (no auth header — credentials injected)
-- [ ] Capture status per file; confirm 2xx (401/403 → DA opt-in off, pause and report)
-- [ ] Report per-file upload summary
-
-## Decision needed
-I can proceed one of two ways once in Execute mode:
-- **A — Import the 20 missing US/EN pages first, then upload all 26 + home-landing + fragments to DA** (complete US/EN site).
-- **B — Upload only what's imported now** (the 17 pages + fragments) and leave the other 20 for later.
+- [ ] Confirm target surface (local preview vs AEM `.aem.page`) — see question below
+- [ ] Open the magazine listing page; confirm title, article teaser links, header + footer render
+- [ ] Open each of the 5 article-detail pages; confirm hero image, title/byline, body (headings, blockquote, inline images), author bio, and the related-stories (`cards-related`) sidebar render
+- [ ] For AEM preview only (if chosen): trigger preview for each path via admin.hlx.page first, then open
+- [ ] Capture a lightweight snapshot per page (DOM/accessibility tree; screenshot only if pixel check needed)
+- [ ] Report per-page pass/fail with any rendering gaps
 
 ## Notes
-- The other ~39 non-English locale URLs (mostly "Coming Soon" stubs) are out of scope for your 26-URL list; covered by `urls-<template>-remaining.txt` if you later want the full 65.
-- Uploading to DA needs the DA/IMS opt-in in **Settings → LLM Permissions**; a 401/403 means it's off (no tokens in chat).
-- **Execution requires Execute mode.** Tell me A or B (or approve to default to **A**), and on exit from plan mode I'll run it and report status.
+- Local preview reflects the committed blocks/CSS/JS + the local `content/` files (fast, no publish).
+- AEM `.aem.page` reflects what's published from DA and is the "real" shared preview a PR would link to; it may need a per-path preview trigger (admin.hlx.page) which is a credentialed action (git/IMS opt-in).
+- **Execution requires Execute mode.** Once you pick the surface and I'm in Execute mode, I'll open each page, verify rendering, and report.
