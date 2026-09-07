@@ -355,3 +355,46 @@ main .section.dark h5,
 main .section.dark h6 {
   color: #fff;
 }
+
+/* WKND standalone content-section headings (e.g. "Recent Articles",
+   "Next Adventures") carry a short yellow underline. Scoped to
+   default-content-wrapper h2 so block-internal titles are unaffected;
+   the source applies it to h2 only, not h3. */
+/* stylelint-disable-next-line no-descending-specificity */
+main .default-content-wrapper > h2 {
+  position: relative;
+  margin-bottom: 40px;
+  padding-bottom: 14px;
+}
+
+main .default-content-wrapper > h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 84px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+/* Standalone CTA links in a content section ("All Articles", "All Trips")
+   render as the WKND flat yellow button. */
+main .default-content-wrapper > p > a:any-link {
+  display: inline-block;
+  margin: 8px 0;
+  padding: 14px 35px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Horizontal separator between the homepage content sections (source uses a
+   thin light-grey rule under each cards + CTA group). */
+main .section.cards-teaser-container {
+  border-bottom: 1px solid var(--dark-text-color);
+}
