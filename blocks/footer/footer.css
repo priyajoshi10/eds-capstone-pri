@@ -55,12 +55,14 @@ footer .footer-social h4 {
   margin: 8px 0;
 }
 
+/* icons sit flush (no gap) so the light squares read as one continuous bar,
+   matching the source */
 footer .footer-social ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 12px;
+  gap: 0;
   align-items: center;
 }
 
@@ -70,8 +72,8 @@ footer .footer-social a:any-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   background-color: var(--dark-text-color);
   opacity: 1;
   transition: opacity 0.2s ease;

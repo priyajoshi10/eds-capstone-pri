@@ -401,3 +401,9 @@ main .section.cards-teaser-container > .default-content-wrapper:last-child {
   border-bottom: 1px solid var(--dark-text-color);
   padding-bottom: 40px;
 }
+
+/* Generous whitespace between the last content section and the footer,
+   matching the source's airy gap above the footer (~178px total). */
+main > .section:last-of-type {
+  margin-bottom: 120px;
+}
