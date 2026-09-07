@@ -377,8 +377,10 @@ main .default-content-wrapper > h2::after {
 }
 
 /* Standalone CTA links in a content section ("All Articles", "All Trips")
-   render as the WKND flat yellow button. */
-main .default-content-wrapper > p > a:any-link {
+   render as the WKND flat yellow button. Only when the link is the sole
+   content of its paragraph — inline links inside a sentence (e.g. the FAQ
+   "call us" phone/email links) must stay plain text. */
+main .default-content-wrapper > p > a:any-link:only-child {
   display: inline-block;
   margin: 8px 0;
   padding: 14px 35px;
