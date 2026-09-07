@@ -143,6 +143,30 @@ function decorateButtons(main) {
 }
 
 /**
+ * Rewrites migrated internal links that still carry the legacy AEM `.html`
+ * extension (e.g. /us/en/magazine/western-australia.html) to the extensionless
+ * form EDS serves. Only touches same-site, non-asset links; external URLs,
+ * hashes, and file downloads are left alone.
+ * @param {HTMLElement} main The main container element
+ */
+function fixInternalLinks(main) {
+  main.querySelectorAll('a[href]').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    try {
+      const url = new URL(href, window.location.href);
+      // only same-origin page links ending in .html
+      if (url.origin === window.location.origin && /\.html$/i.test(url.pathname)) {
+        url.pathname = url.pathname.replace(/\.html$/i, '');
+        a.setAttribute('href', `${url.pathname}${url.search}${url.hash}`);
+      }
+    } catch {
+      /* ignore unparseable hrefs (e.g. bare "#") */
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -153,6 +177,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  fixInternalLinks(main);
 }
 
 /**
