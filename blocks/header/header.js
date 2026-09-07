@@ -30,13 +30,16 @@ function toggleMenu(nav, force) {
 }
 
 /**
- * Build the search form from the ':search:' placeholder in the tools section.
+ * Build the search form in the tools section. Replaces the "Search" placeholder
+ * paragraph (or a :search: icon span) with a real search input.
  * Form controls live in JS (not the plain fragment) per the nav contract.
  * @param {Element} toolsSection the tools section element
  */
 function decorateSearch(toolsSection) {
+  if (!toolsSection) return;
   const placeholder = [...toolsSection.querySelectorAll('p')]
-    .find((p) => p.textContent.trim() === ':search:');
+    .find((p) => /^(:search:|search)$/i.test(p.textContent.trim()))
+    || toolsSection.querySelector('p');
   if (!placeholder) return;
   const form = document.createElement('form');
   form.className = 'nav-search';
@@ -49,6 +52,38 @@ function decorateSearch(toolsSection) {
   input.setAttribute('aria-label', 'Search');
   form.append(input);
   placeholder.replaceWith(form);
+}
+
+/**
+ * Wire the locale (en-US) toggle in the utility bar to open/close the grouped
+ * country/locale dropdown list. Content lives in the fragment; JS only adds behavior.
+ * @param {Element} utilitySection the utility section element
+ */
+function decorateLocale(utilitySection) {
+  if (!utilitySection) return;
+  const list = utilitySection.querySelector(':scope > ul');
+  const toggle = [...utilitySection.querySelectorAll(':scope > p > a, :scope > p')]
+    .find((el) => /en-us/i.test(el.textContent.trim()));
+  if (!list || !toggle) return;
+  list.classList.add('nav-locale-list');
+  const trigger = toggle.closest('p') || toggle;
+  trigger.classList.add('nav-locale-toggle');
+  const link = trigger.querySelector('a') || trigger;
+  link.setAttribute('role', 'button');
+  link.setAttribute('aria-expanded', 'false');
+  link.setAttribute('aria-haspopup', 'true');
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const open = link.getAttribute('aria-expanded') === 'true';
+    link.setAttribute('aria-expanded', open ? 'false' : 'true');
+    list.classList.toggle('is-open', !open);
+  });
+  document.addEventListener('click', (e) => {
+    if (!utilitySection.contains(e.target)) {
+      link.setAttribute('aria-expanded', 'false');
+      list.classList.remove('is-open');
+    }
+  });
 }
 
 /**
@@ -119,7 +154,10 @@ export default async function decorate(block) {
     });
   }
 
-  // Tools: sign-in, locale toggle, and the search form
+  // Utility: wire the en-US locale dropdown toggle
+  decorateLocale(nav.querySelector('.nav-utility'));
+
+  // Tools: build the search form
   const tools = nav.querySelector('.nav-tools');
   if (tools) decorateSearch(tools);
 

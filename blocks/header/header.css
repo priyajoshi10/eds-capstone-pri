@@ -37,6 +37,7 @@ header nav[aria-expanded='true'] {
 header nav .nav-utility {
   grid-area: utility;
   box-sizing: border-box;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -65,6 +66,58 @@ header nav .nav-utility a:any-link {
   font-size: var(--body-font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.03em;
+}
+
+/* locale toggle shows a caret; the grouped list is a dropdown */
+header nav .nav-locale-toggle a[aria-expanded]::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border: solid var(--dark-text-color);
+  border-width: 0 2px 2px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+header nav .nav-locale-toggle a[aria-expanded='true']::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+
+header nav .nav-utility .nav-locale-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 3;
+  min-width: 200px;
+  margin: 0;
+  padding: 12px 16px;
+  list-style: none;
+  background-color: var(--dark-color);
+  text-align: left;
+}
+
+header nav .nav-utility .nav-locale-list.is-open {
+  display: block;
+}
+
+header nav .nav-utility .nav-locale-list > li {
+  margin: 8px 0;
+  color: var(--dark-text-color);
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+}
+
+header nav .nav-utility .nav-locale-list ul {
+  margin: 4px 0 0;
+  padding-left: 12px;
+  list-style: none;
+}
+
+header nav .nav-utility .nav-locale-list ul a:any-link {
+  text-transform: none;
+  line-height: 2;
 }
 
 /* hamburger */
@@ -177,12 +230,14 @@ header nav[aria-expanded='true'] .nav-sections {
   align-self: start;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-sections ul {
   list-style: none;
   margin: 0;
   padding-left: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-sections li {
   padding: 12px 0;
   font-family: var(--body-font-family);
@@ -192,6 +247,7 @@ header nav .nav-sections li {
   letter-spacing: 0.03em;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-sections a:hover {
   color: var(--link-color);
 }
