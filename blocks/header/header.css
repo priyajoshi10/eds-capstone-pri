@@ -369,11 +369,13 @@ header nav .nav-sections li {
   letter-spacing: 0.03em;
 }
 
-/* mobile nav hover: highlight the link text in the brand yellow (source) */
-/* stylelint-disable-next-line no-descending-specificity */
-header nav .nav-sections a:hover {
+/* mobile nav hover + current-section: highlight the link text brand yellow */
+/* stylelint-disable no-descending-specificity */
+header nav .nav-sections a:hover,
+header nav .nav-sections .nav-item-active > a {
   color: var(--accent-color);
 }
+/* stylelint-enable no-descending-specificity */
 
 /* nested child links (Magazine/Adventures/FAQs/About Us) — flat list on mobile */
 header nav .nav-sections .nav-item-home > ul {
@@ -428,8 +430,11 @@ header nav .nav-search input {
     height: auto;
   }
 
+  /* keep the header pinned to the top while scrolling (matches the source);
+     sticky stays in flow so it reserves its own space, no content jump */
   header .nav-wrapper {
-    position: relative;
+    position: sticky;
+    top: 0;
   }
 
   header nav {
@@ -524,9 +529,10 @@ header nav .nav-search input {
     transition: background-color 0.2s, color 0.2s;
   }
 
-  /* desktop nav hover: yellow brand box behind the link (source) */
+  /* desktop nav hover + current-section highlight: yellow brand box (source) */
   header nav .nav-sections .nav-item-home > ul > li > a:hover,
-  header nav .nav-sections .nav-item-home > ul > li > a:focus-visible {
+  header nav .nav-sections .nav-item-home > ul > li > a:focus-visible,
+  header nav .nav-sections .nav-item-home > ul > li.nav-item-active > a {
     background-color: var(--accent-color);
     color: var(--accent-text-color);
   }

@@ -67,7 +67,8 @@ footer .footer-social ul {
 }
 
 /* each social link is a light square button with the icon centered (source:
-   48x48, #ebebeb background) */
+   48x48, #ebebeb background). No hover state change — the source icons stay
+   constant. */
 footer .footer-social a:any-link {
   display: inline-flex;
   align-items: center;
@@ -75,12 +76,6 @@ footer .footer-social a:any-link {
   width: 48px;
   height: 48px;
   background-color: var(--dark-text-color);
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-footer .footer-social a:hover {
-  opacity: 0.7;
 }
 
 /* the source icon glyphs are light-filled (designed for the dark bar); on the

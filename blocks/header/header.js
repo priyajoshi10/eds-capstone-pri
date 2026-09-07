@@ -189,6 +189,20 @@ export default async function decorate(block) {
         link.classList.add('nav-trigger');
       }
     });
+
+    // Highlight the nav item for the current section (source shows it yellow).
+    // Only the primary child links (Magazine/Adventures/FAQs/About Us) — not the
+    // hidden Home link — are candidates. A link is current when its target path
+    // equals the page path or is a prefix of it (so article sub-pages highlight
+    // their parent section). Normalize: strip /content, .html, trailing slash.
+    const norm = (p) => p.replace(/^\/content/, '').replace(/\.html$/, '').replace(/\/$/, '');
+    const currentPath = norm(window.location.pathname);
+    navSections.querySelectorAll('.nav-item-home > ul a[href]').forEach((a) => {
+      const target = norm(new URL(a.href, window.location).pathname);
+      if (target && (currentPath === target || currentPath.startsWith(`${target}/`))) {
+        a.closest('li').classList.add('nav-item-active');
+      }
+    });
   }
 
   // Utility: wire the en-US locale dropdown toggle
