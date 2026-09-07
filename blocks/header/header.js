@@ -76,16 +76,36 @@ function decorateLocale(utilitySection) {
       .find((t) => /^[a-z]{2}-[a-z]{2}$/i.test(t));
     return code ? code.split('-')[1].toUpperCase() : null;
   };
-  list.querySelectorAll(':scope > li').forEach((li) => {
-    const cc = countryOf(li);
-    if (cc) li.dataset.flag = cc;
-  });
-
   const trigger = toggle.closest('p') || toggle;
   trigger.classList.add('nav-locale-toggle');
   const link = trigger.querySelector('a') || trigger;
+  const activeLocale = link.textContent.trim().toLowerCase();
   const toggleCC = (link.textContent.trim().split('-')[1] || 'US').toUpperCase();
   link.dataset.flag = toggleCC;
+
+  list.querySelectorAll(':scope > li').forEach((li) => {
+    const cc = countryOf(li);
+    if (cc) li.dataset.flag = cc;
+    // Wrap the country label (the text before the sub-list) in a title span so
+    // it can be styled independently of the inline locale links.
+    const sub = li.querySelector(':scope > ul');
+    if (sub) {
+      const title = document.createElement('span');
+      title.className = 'nav-locale-title';
+      [...li.childNodes].forEach((node) => {
+        if (node !== sub && !(node.nodeType === 1 && node.tagName === 'UL')) {
+          title.appendChild(node);
+        }
+      });
+      li.insertBefore(title, sub);
+      // Mark the locale matching the current toggle as active (underlined).
+      sub.querySelectorAll(':scope > li > a').forEach((a) => {
+        if (a.textContent.trim().toLowerCase() === activeLocale) {
+          a.closest('li').classList.add('nav-locale-active');
+        }
+      });
+    }
+  });
   link.setAttribute('role', 'button');
   link.setAttribute('aria-expanded', 'false');
   link.setAttribute('aria-haspopup', 'true');
