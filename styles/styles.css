@@ -394,7 +394,10 @@ main .default-content-wrapper > p > a:any-link {
 }
 
 /* Horizontal separator between the homepage content sections (source uses a
-   thin light-grey rule under each cards + CTA group). */
-main .section.cards-teaser-container {
+   thin light-grey rule under each cards + CTA group, at content width). The
+   border sits on the section's inner wrapper so it spans the centered content
+   column rather than the full viewport. */
+main .section.cards-teaser-container > .default-content-wrapper:last-child {
   border-bottom: 1px solid var(--dark-text-color);
+  padding-bottom: 40px;
 }

@@ -99,11 +99,11 @@
   text-decoration: none;
 }
 
-.hero-adventure > div:last-child a:hover,
+/* The source's hero teaser button has no hover state — it stays constant
+   yellow. Keep a focus outline for keyboard accessibility only. */
 .hero-adventure > div:last-child a:focus-visible {
-  background-color: var(--text-color);
-  color: var(--accent-color);
-  text-decoration: none;
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
 }
 
 @media (width >= 900px) {
