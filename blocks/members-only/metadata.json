@@ -1,0 +1,39 @@
+{
+  "variantName": "members-only",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-07T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd.site/us/en/magazine.html",
+    "originPage": "WKND Magazine landing page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "gated-teaser",
+    "imagePattern": "none"
+  },
+  "contentPattern": {
+    "structure": "heading + short description + Read More (no image)",
+    "buttonCount": 1,
+    "imageCount": 0,
+    "cardsPerRow": 2
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "members-only / gated teaser cards prompting sign-in"
+    ],
+    "notSuitableFor": [
+      "open article teasers with imagery (use cards-teaser)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/us/en/magazine"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-07T00:00:00.000Z",
+    "notes": "Locked members-only teasers at the bottom of the Magazine page."
+  }
+}

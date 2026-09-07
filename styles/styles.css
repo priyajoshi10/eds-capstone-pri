@@ -440,3 +440,26 @@ main .section.article .default-content-wrapper > blockquote {
 main > .section:last-of-type {
   margin-bottom: 120px;
 }
+
+/* FAQ two-column row: accordion (left) + "Need more help?" (right), via a
+   `style | faq-columns` section-metadata marker. The section is the grid
+   container and its two wrappers (accordion, help) are the columns. The
+   section normally caps its inner wrapper at content width; widen it here so
+   the two columns share the full row. Stacks on mobile. */
+@media (width >= 900px) {
+  main .section.faq-columns {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: start;
+    max-width: var(--content-max-width, 1200px);
+    margin: 40px auto;
+    padding: 0 32px;
+  }
+
+  main .section.faq-columns > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+}
