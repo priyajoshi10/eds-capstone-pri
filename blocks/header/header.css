@@ -72,6 +72,57 @@ header nav .nav-utility a:any-link {
   letter-spacing: 0.03em;
 }
 
+/* Flag icons (source WKND renders these as CSS background images keyed by
+   country code). We render a small flag before the toggle label and before
+   each country group heading. Paths resolve relative to this CSS file. */
+header nav .nav-locale-toggle a[data-flag]::before,
+header nav .nav-utility .nav-locale-list > li[data-flag]::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+header nav .nav-locale-toggle a[data-flag='US']::before,
+header nav .nav-locale-list > li[data-flag='US']::before {
+  background-image: url('flags/US.svg');
+}
+
+header nav .nav-locale-toggle a[data-flag='CA']::before,
+header nav .nav-locale-list > li[data-flag='CA']::before {
+  background-image: url('flags/CA.svg');
+}
+
+header nav .nav-locale-toggle a[data-flag='CH']::before,
+header nav .nav-locale-list > li[data-flag='CH']::before {
+  background-image: url('flags/CH.svg');
+}
+
+header nav .nav-locale-toggle a[data-flag='DE']::before,
+header nav .nav-locale-list > li[data-flag='DE']::before {
+  background-image: url('flags/DE.svg');
+}
+
+header nav .nav-locale-toggle a[data-flag='FR']::before,
+header nav .nav-locale-list > li[data-flag='FR']::before {
+  background-image: url('flags/FR.svg');
+}
+
+header nav .nav-locale-toggle a[data-flag='ES']::before,
+header nav .nav-locale-list > li[data-flag='ES']::before {
+  background-image: url('flags/ES.svg');
+}
+
+header nav .nav-locale-toggle a[data-flag='IT']::before,
+header nav .nav-locale-list > li[data-flag='IT']::before {
+  background-image: url('flags/IT.svg');
+}
+
 /* locale toggle shows a caret; the grouped list is a dropdown */
 header nav .nav-locale-toggle a[aria-expanded]::after {
   content: '';

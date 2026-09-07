@@ -66,9 +66,26 @@ function decorateLocale(utilitySection) {
     .find((el) => /en-us/i.test(el.textContent.trim()));
   if (!list || !toggle) return;
   list.classList.add('nav-locale-list');
+
+  // Flags are keyed by country code (the part after the hyphen in each locale,
+  // e.g. en-US -> US). Tag each top-level country group and the toggle with a
+  // data-flag country code; header.css maps that to the matching flag SVG.
+  const countryOf = (el) => {
+    const code = [...el.querySelectorAll('a')]
+      .map((a) => a.textContent.trim())
+      .find((t) => /^[a-z]{2}-[a-z]{2}$/i.test(t));
+    return code ? code.split('-')[1].toUpperCase() : null;
+  };
+  list.querySelectorAll(':scope > li').forEach((li) => {
+    const cc = countryOf(li);
+    if (cc) li.dataset.flag = cc;
+  });
+
   const trigger = toggle.closest('p') || toggle;
   trigger.classList.add('nav-locale-toggle');
   const link = trigger.querySelector('a') || trigger;
+  const toggleCC = (link.textContent.trim().split('-')[1] || 'US').toUpperCase();
+  link.dataset.flag = toggleCC;
   link.setAttribute('role', 'button');
   link.setAttribute('aria-expanded', 'false');
   link.setAttribute('aria-haspopup', 'true');
