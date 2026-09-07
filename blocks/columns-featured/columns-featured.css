@@ -83,10 +83,12 @@
   text-decoration: none;
 }
 
-.columns-featured a:hover,
+/* The source's featured teaser button has no hover state — it stays constant
+   yellow. Keep focus-visible for keyboard accessibility without changing the
+   resting look. */
 .columns-featured a:focus-visible {
-  background-color: var(--text-color);
-  color: var(--accent-color);
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
 }
 
 /* desktop: two-column side-by-side, image ~2fr / text ~1fr */
