@@ -69,15 +69,19 @@
   text-transform: uppercase;
 }
 
-/* Social links — authored as separate <p><a> siblings. Lay them out as a small
-   centered horizontal row of dark square icon buttons (matches the source). */
+/* Social links — authored as separate <p><a> siblings. Lay them out as a
+   single continuous bar of dark square icon buttons sitting flush together
+   (no gaps), matching the source. The first item carries the top margin. */
 .cards-profile .cards-profile-card-body p.cards-profile-social-item {
   display: inline-block;
-  margin: 12px 4px 0;
+  margin: 12px 0 0;
+  vertical-align: top;
+  line-height: 0;
 }
 
 /* Each social link becomes a 36px dark square; the text label is hidden and a
-   white platform glyph is drawn via ::before. */
+   white platform glyph is drawn via ::before. Squares butt up against each
+   other so the three read as one continuous dark bar. */
 .cards-profile .cards-profile-card-body p.cards-profile-social-item a[data-social] {
   display: inline-flex;
   align-items: center;

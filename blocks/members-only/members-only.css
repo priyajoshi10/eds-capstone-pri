@@ -1,75 +1,58 @@
-/* members-only — gated teaser cards on the magazine page.
-   Source shows these as locked cards (no image, dimmed) prompting sign-in. */
+/* members-only — the two gated teasers below "Members Only" on the magazine
+   page. The source renders them as clean side-by-side text teasers (heading +
+   short description + yellow Read More button), no image, no box. */
 
 .members-only > ul {
   list-style: none;
-  margin: 0;
+  margin: 24px 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 32px;
 }
 
 @media (width >= 600px) {
   .members-only > ul {
     grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
   }
 }
 
-/* Each locked card: light panel with a lock badge, content slightly dimmed to
-   signal the gated (members-only) state. */
 .members-only .members-only-card {
-  position: relative;
-  padding: 32px 24px;
-  background-color: var(--light-color); /* #f7f7f7 */
-  border: 1px solid var(--dark-text-color); /* #ebebeb */
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-/* lock badge, top-right */
-.members-only .members-only-card::after {
-  content: '';
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 22px;
-  height: 22px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  opacity: 0.55;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23202020" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>');
-}
-
-/* content is dimmed to read as gated */
-.members-only .members-only-card-body {
-  opacity: 0.65;
-}
-
+/* heading — sans, 18px, dark (matches source) */
 .members-only .members-only-card-body h3 {
   margin: 0 0 8px;
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-l); /* 22/24px */
-  font-weight: 400;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m); /* 18px */
+  font-weight: 600;
   line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   color: var(--text-color);
 }
 
 .members-only .members-only-card-body p {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
   line-height: 1.6;
   color: var(--text-color);
 }
 
-/* the "Read More" link stays subtle/inactive-looking on the gated card */
+/* Read More — WKND flat yellow button */
 .members-only .members-only-card-body p a:any-link {
-  color: var(--text-color);
+  display: inline-block;
+  padding: 14px 35px;
+  background-color: var(--accent-color); /* #ffea00 */
+  color: var(--accent-text-color);
+  font-size: var(--body-font-size-xs); /* 14px */
   font-weight: 600;
-  font-size: var(--body-font-size-xs);
-  text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
   text-decoration: none;
 }
 
