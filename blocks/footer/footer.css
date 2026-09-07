@@ -96,5 +96,38 @@ footer .footer-legal a:any-link {
 @media (width >= 900px) {
   footer .footer > div {
     padding: 24px 32px;
+
+    /* Top row: logo | nav | Follow Us + social all on one line; legal spans
+       full width below. Matches the source's horizontal footer masthead. */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px 32px;
+  }
+
+  footer .footer-brand {
+    grid-column: 1;
+  }
+
+  footer .footer-nav {
+    grid-column: 2;
+  }
+
+  footer .footer-social {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* Follow Us label sits inline to the left of the icons */
+  footer .footer-social h4 {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* legal block spans the full row below the masthead */
+  footer .footer-legal {
+    grid-column: 1 / -1;
   }
 }
