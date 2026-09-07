@@ -4,6 +4,10 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
+
+  /* clip the scrollbar-width sliver of the full-bleed utility bar so its
+     100vw breakout never triggers horizontal page scroll */
+  overflow-x: clip;
 }
 
 header nav {
@@ -392,10 +396,16 @@ header nav .nav-search input {
     width: 220px;
   }
 
-  /* utility bar spans the full viewport width above the logo/nav row */
+  /* utility bar spans the full viewport width above the logo/nav row.
+     flex-basis:100% only fills the nav content box (max-width minus padding),
+     so the negative margins shift it left but leave a gap on the right. Force
+     the box itself to a full 100vw and lock shrink off so it truly bleeds to
+     both edges; inner padding realigns content to the 40px nav inset. */
   header nav .nav-utility {
     order: -1;
-    flex-basis: 100%;
+    flex: 0 0 100vw;
+    width: 100vw;
+    max-width: 100vw;
     margin-inline: calc(50% - 50vw);
     padding: 6px calc(50vw - 50% + 40px);
   }
