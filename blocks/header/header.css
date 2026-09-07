@@ -424,17 +424,19 @@ header nav .nav-search input {
 }
 
 @media (width >= 900px) {
-  /* let the header grow to the full (taller) desktop nav height instead of
-     being clipped to the mobile --nav-height */
+  /* Pin the header to the top while scrolling (source uses position:fixed).
+     The nav-wrapper is fixed; the header element reserves the row's height so
+     page content doesn't slide underneath. --wknd-header-height is the tall
+     desktop masthead (utility strip + logo row). */
   header {
-    height: auto;
+    height: var(--wknd-header-height, 176px);
   }
 
-  /* keep the header pinned to the top while scrolling (matches the source);
-     sticky stays in flow so it reserves its own space, no content jump */
   header .nav-wrapper {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
   }
 
   header nav {

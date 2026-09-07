@@ -9,26 +9,35 @@
  */
 
 .accordion-faq {
-  /* subtle divider tone derived from the WKND text color */
-  --accordion-faq-divider: rgb(32 32 32 / 15%);
+  /* light-grey divider between questions (source: #ebebeb) */
+  --accordion-faq-divider: var(--dark-text-color);
+}
+
+/* FAQ intro image: the source caps it to the reading width (~748px) rather
+   than the full content column. Scope to the FAQ section so other pages are
+   unaffected. */
+main .section.accordion-faq-container .default-content-wrapper img {
+  max-width: 748px;
+  height: auto;
 }
 
 /* Each Q&A item -- divider line between items */
 .accordion-faq .accordion-faq-item {
-  border-bottom: 1px solid var(--accordion-faq-divider);
+  border-bottom: 2px solid var(--accordion-faq-divider);
 }
 
 .accordion-faq .accordion-faq-item:first-of-type {
-  border-top: 1px solid var(--accordion-faq-divider);
+  border-top: 2px solid var(--accordion-faq-divider);
 }
 
-/* Question row (summary) -- WKND heading treatment */
+/* Question row (summary) -- source renders questions in the body sans font at
+   ~16px, not the large serif heading. */
 .accordion-faq .accordion-faq-item-label {
   position: relative;
   display: block;
   padding: 16px 46px 16px 8px;
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-l); /* 22px mobile / 24px desktop */
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s); /* 16px */
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-color);

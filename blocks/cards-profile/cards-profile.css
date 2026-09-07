@@ -69,23 +69,47 @@
   text-transform: uppercase;
 }
 
-/* Social links — authored as separate <p><a> siblings.
-   Lay them out as a small, dark, centered horizontal row. */
-.cards-profile .cards-profile-card-body p {
+/* Social links — authored as separate <p><a> siblings. Lay them out as a small
+   centered horizontal row of dark square icon buttons (matches the source). */
+.cards-profile .cards-profile-card-body p.cards-profile-social-item {
   display: inline-block;
-  margin: 8px 6px 0;
+  margin: 12px 4px 0;
 }
 
-.cards-profile .cards-profile-card-body p a:any-link {
-  color: var(--text-color);
-  font-size: var(--body-font-size-xs); /* 14px */
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+/* Each social link becomes a 36px dark square; the text label is hidden and a
+   white platform glyph is drawn via ::before. */
+.cards-profile .cards-profile-card-body p.cards-profile-social-item a[data-social] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: var(--dark-color);
+  font-size: 0; /* hide the text label */
   text-decoration: none;
 }
 
-.cards-profile .cards-profile-card-body p a:hover {
-  color: var(--link-color);
-  text-decoration: none;
+.cards-profile .cards-profile-card-body p.cards-profile-social-item a[data-social]::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.cards-profile .cards-profile-card-body a[data-social='facebook']::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.3H7.6V13h2.5v8h3.4z"/></svg>');
+}
+
+.cards-profile .cards-profile-card-body a[data-social='twitter']::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M22 5.8c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.5a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.6 3.3 4-.6.2-1.3.2-1.9.1a4.1 4.1 0 0 0 3.8 2.9A8.2 8.2 0 0 1 2 18.3a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.2z"/></svg>');
+}
+
+.cards-profile .cards-profile-card-body a[data-social='instagram']::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="%23fff" stroke="none"/></svg>');
+}
+
+.cards-profile .cards-profile-card-body p.cards-profile-social-item a[data-social]:hover {
+  opacity: 0.8;
 }

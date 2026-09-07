@@ -24,6 +24,20 @@ export default function decorate(block) {
     list.querySelectorAll('a').forEach((a) => a.classList.add('cards-profile-social-link'));
   });
 
+  // Contributor social links are authored as plain text ("Facebook", "Twitter",
+  // "Instagram") in their own <p>. Tag each with the platform so the CSS can
+  // render a dark icon button, and mark the row so the <p>s lay out inline.
+  ul.querySelectorAll('.cards-profile-card-body').forEach((body) => {
+    const socialLinks = [...body.querySelectorAll(':scope > p > a')]
+      .filter((a) => /^(facebook|twitter|instagram)$/i.test(a.textContent.trim()));
+    socialLinks.forEach((a) => {
+      const platform = a.textContent.trim().toLowerCase();
+      a.dataset.social = platform;
+      a.setAttribute('aria-label', a.textContent.trim());
+      a.closest('p').classList.add('cards-profile-social-item');
+    });
+  });
+
   block.textContent = '';
   block.append(ul);
 }

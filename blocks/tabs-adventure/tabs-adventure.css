@@ -106,7 +106,9 @@
   object-fit: cover;
 }
 
-/* card body: title link + trailing description share the second <p> */
+/* card body: title link + trailing description share the second <p>. The
+   trailing description text is clamped to a single line with an ellipsis
+   (matches the source teaser cards). */
 /* stylelint-disable-next-line no-descending-specificity */
 .tabs-adventure .tabs-adventure-panel ul > li > p:last-child {
   margin: 0;
@@ -115,9 +117,13 @@
   line-height: 21px;
   color: rgb(105 105 105);
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* linked card title on its own line above the description */
+/* linked card title on its own line above the description; the title must wrap
+   normally (only the trailing description text is clamped to one line) */
 /* stylelint-disable-next-line no-descending-specificity */
 .tabs-adventure .tabs-adventure-panel ul > li > p:last-child a {
   display: block;
@@ -128,6 +134,7 @@
   line-height: 27px;
   text-transform: uppercase;
   text-decoration: none;
+  white-space: normal;
 }
 
 .tabs-adventure .tabs-adventure-panel ul > li > p:last-child a:hover,
