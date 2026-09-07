@@ -27,21 +27,19 @@
 }
 
 .carousel-hero .carousel-hero-slides {
-  display: flex;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overflow: scroll clip;
+  display: block;
+  position: relative;
 }
 
-.carousel-hero .carousel-hero-slides::-webkit-scrollbar {
-  display: none;
-}
-
+/* Display swap: only the active slide is shown (matches the source — instant,
+   no scroll animation). JS toggles aria-hidden per slide. */
 .carousel-hero .carousel-hero-slide {
   position: relative;
-  flex: 0 0 100%;
-  scroll-snap-align: start;
   width: 100%;
+}
+
+.carousel-hero .carousel-hero-slide[aria-hidden='true'] {
+  display: none;
 }
 
 /* ---- Full-bleed background image ---- */

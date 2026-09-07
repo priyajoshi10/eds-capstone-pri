@@ -1,45 +1,31 @@
-function updateActiveSlide(slide) {
-  const block = slide.closest('.carousel-hero');
-  const slideIndex = parseInt(slide.dataset.slideIndex, 10);
-  block.dataset.activeSlide = slideIndex;
-
-  const slides = block.querySelectorAll('.carousel-hero-slide');
-
-  slides.forEach((aSlide, idx) => {
-    aSlide.setAttribute('aria-hidden', idx !== slideIndex);
-    aSlide.querySelectorAll('a').forEach((link) => {
-      if (idx !== slideIndex) {
-        link.setAttribute('tabindex', '-1');
-      } else {
-        link.removeAttribute('tabindex');
-      }
-    });
-  });
-
-  const indicators = block.querySelectorAll('.carousel-hero-slide-indicator');
-  indicators.forEach((indicator, idx) => {
-    const button = indicator.querySelector('button');
-    if (idx !== slideIndex) {
-      button.removeAttribute('disabled');
-      button.removeAttribute('aria-current');
-    } else {
-      button.setAttribute('disabled', true);
-      button.setAttribute('aria-current', true);
-    }
-  });
-}
-
+// Show a slide by index via a direct display swap (matches the source: instant,
+// no scroll animation). The active index is tracked on block.dataset.activeSlide
+// and set synchronously here, so the dots and arrows always stay in sync.
 export function showSlide(block, slideIndex = 0) {
   const slides = block.querySelectorAll('.carousel-hero-slide');
   let realSlideIndex = slideIndex < 0 ? slides.length - 1 : slideIndex;
   if (slideIndex >= slides.length) realSlideIndex = 0;
-  const activeSlide = slides[realSlideIndex];
 
-  activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
-  block.querySelector('.carousel-hero-slides').scrollTo({
-    top: 0,
-    left: activeSlide.offsetLeft,
-    behavior: 'smooth',
+  block.dataset.activeSlide = realSlideIndex;
+
+  slides.forEach((slide, idx) => {
+    const isActive = idx === realSlideIndex;
+    slide.setAttribute('aria-hidden', !isActive);
+    slide.querySelectorAll('a').forEach((link) => {
+      if (isActive) link.removeAttribute('tabindex');
+      else link.setAttribute('tabindex', '-1');
+    });
+  });
+
+  block.querySelectorAll('.carousel-hero-slide-indicator').forEach((indicator, idx) => {
+    const button = indicator.querySelector('button');
+    if (idx === realSlideIndex) {
+      button.setAttribute('disabled', true);
+      button.setAttribute('aria-current', true);
+    } else {
+      button.removeAttribute('disabled');
+      button.removeAttribute('aria-current');
+    }
   });
 }
 
@@ -59,15 +45,6 @@ function bindEvents(block) {
   });
   block.querySelector('.slide-next').addEventListener('click', () => {
     showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
-  });
-
-  const slideObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) updateActiveSlide(entry.target);
-    });
-  }, { threshold: 0.5 });
-  block.querySelectorAll('.carousel-hero-slide').forEach((slide) => {
-    slideObserver.observe(slide);
   });
 }
 
@@ -162,5 +139,9 @@ export default async function decorate(block) {
 
   if (!isSingleSlide) {
     bindEvents(block);
+    // show the first slide and sync the dots/arrows up front
+    showSlide(block, 0);
+  } else {
+    block.dataset.activeSlide = 0;
   }
 }
