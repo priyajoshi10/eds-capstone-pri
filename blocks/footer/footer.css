@@ -8,7 +8,7 @@ footer {
 footer .footer > div {
   margin: auto;
   max-width: var(--content-max-width, 1200px);
-  padding: 24px;
+  padding: 40px 24px;
 }
 
 footer .footer p {
@@ -64,14 +64,15 @@ footer .footer-social ul {
   align-items: center;
 }
 
-footer .footer-social img {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-
+/* each social link is a light square button with the icon centered (source:
+   48x48, #ebebeb background) */
 footer .footer-social a:any-link {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--dark-text-color);
   opacity: 1;
   transition: opacity 0.2s ease;
 }
@@ -80,12 +81,29 @@ footer .footer-social a:hover {
   opacity: 0.7;
 }
 
-/* legal / copyright block */
+/* the source icon glyphs are light-filled (designed for the dark bar); on the
+   light button box, invert them to dark so they're visible (matches source:
+   dark glyph on light square) */
+footer .footer-social img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  filter: brightness(0.12);
+}
+
+/* legal / copyright block — the source separates it from the masthead with
+   whitespace only (no visible rule). On mobile the sections stack, so add top
+   spacing; on desktop the grid row-gap handles the separation. */
 footer .footer-legal {
-  border-top: 1px solid rgb(255 255 255 / 15%);
-  padding-top: 16px;
+  margin-top: 24px;
   font-size: var(--body-font-size-xs);
   line-height: 1.5;
+}
+
+@media (width >= 900px) {
+  footer .footer-legal {
+    margin-top: 0;
+  }
 }
 
 footer .footer-legal a:any-link {
@@ -95,14 +113,14 @@ footer .footer-legal a:any-link {
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 24px 32px;
+    padding: 48px 32px;
 
     /* Top row: logo | nav | Follow Us + social all on one line; legal spans
        full width below. Matches the source's horizontal footer masthead. */
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 24px 32px;
+    gap: 40px 32px;
   }
 
   footer .footer-brand {
