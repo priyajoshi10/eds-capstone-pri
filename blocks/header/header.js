@@ -86,8 +86,9 @@ export default async function decorate(block) {
     }
   });
 
+  // Four content sections: utility (top dark bar), brand (logo), sections (nav), tools (search).
   const sections = [...nav.children];
-  const classes = ['brand', 'sections', 'tools'];
+  const classes = ['utility', 'brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     if (sections[i]) sections[i].classList.add(`nav-${c}`);
   });
