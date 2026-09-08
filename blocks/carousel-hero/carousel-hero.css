@@ -74,6 +74,12 @@
   text-align: left;
 }
 
+/* Empty caption cell (adventure hero slides have no text): don't render the
+   white card at all, so the hero is just the image, matching the source. */
+.carousel-hero .carousel-hero-slide-content-empty {
+  display: none;
+}
+
 .carousel-hero .carousel-hero-slide-content h1,
 .carousel-hero .carousel-hero-slide-content h2,
 .carousel-hero .carousel-hero-slide-content h3 {

@@ -95,18 +95,28 @@
   list-style: none;
 }
 
-/* Plain text list (e.g. "What to Bring"): simple single-column bulleted list,
-   matching the reference. */
+/* Plain text list (e.g. "What to Bring"): single-column list with a small
+   right-pointing arrow marker (the source uses a wknd-icon-font glyph; we use a
+   Unicode triangle to match visually), not a round disc bullet. */
 .tabs-adventure .tabs-adventure-panel ul:not(:has(img)) {
   margin: 0;
-  padding: 0 0 0 20px;
-  list-style: disc;
+  padding: 0;
+  list-style: none;
 }
 
 .tabs-adventure .tabs-adventure-panel ul:not(:has(img)) > li {
+  position: relative;
   margin: 0 0 8px;
+  padding-left: 20px;
   font-size: var(--body-font-size-m); /* 18px */
   line-height: 1.5;
+  color: var(--text-color);
+}
+
+.tabs-adventure .tabs-adventure-panel ul:not(:has(img)) > li::before {
+  content: '\25B8'; /* ▸ small right-pointing triangle */
+  position: absolute;
+  left: 4px;
   color: var(--text-color);
 }
 

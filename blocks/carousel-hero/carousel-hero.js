@@ -55,7 +55,14 @@ function createSlide(row, slideIndex, carouselId) {
   slide.classList.add('carousel-hero-slide');
 
   row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
-    column.classList.add(`carousel-hero-slide-${colIdx === 0 ? 'image' : 'content'}`);
+    const kind = colIdx === 0 ? 'image' : 'content';
+    column.classList.add(`carousel-hero-slide-${kind}`);
+    // The source hero slides on adventure pages carry no caption — the content
+    // cell is empty. Flag empty content cells so the CSS hides the white card
+    // (otherwise it renders as a blank white strip over the image).
+    if (kind === 'content' && !column.textContent.trim()) {
+      column.classList.add('carousel-hero-slide-content-empty');
+    }
     slide.append(column);
   });
 
