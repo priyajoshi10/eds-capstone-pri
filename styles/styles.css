@@ -488,3 +488,57 @@ main > .section:last-of-type {
     grid-row: 1 / span 2;
   }
 }
+
+/* Adventure detail pages: the attributes sidebar and the tabs panel share one
+   `style | adventure-detail` section. The reference lays them out as a two-
+   column row — a narrow attributes/"Share" column on the LEFT and the wide
+   tabs panel on the RIGHT. Stacks on mobile (source order: attributes, then
+   tabs). */
+@media (width >= 900px) {
+  main .section.adventure-detail {
+    display: grid;
+    grid-template-columns: 291px 1fr;
+    column-gap: 48px;
+    align-items: start;
+    max-width: var(--content-max-width, 1200px);
+    margin: 40px auto;
+    padding: 0 32px;
+  }
+
+  main .section.adventure-detail > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* attributes block + its "Share this Adventure" heading -> left column */
+  main .section.adventure-detail > .columns-attributes-wrapper,
+  main .section.adventure-detail > .default-content-wrapper {
+    grid-column: 1;
+  }
+
+  /* tabs panel -> right column, spanning both left-column rows */
+  main .section.adventure-detail > .tabs-adventure-wrapper {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+}
+
+/* Adventure title: yellow underline, matching the reference. The reference
+   underlines the title ONLY on adventure detail pages (and FAQs) — NOT on
+   magazine articles or list pages — so this is scoped to the section that
+   immediately precedes the adventure-detail row, not all h1s. */
+main .section:has(+ .section.adventure-detail) > .default-content-wrapper > h1 {
+  position: relative;
+  margin-bottom: 40px;
+  padding-bottom: 14px;
+}
+
+main .section:has(+ .section.adventure-detail) > .default-content-wrapper > h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 84px;
+  border-bottom: 2px solid var(--accent-color);
+}
