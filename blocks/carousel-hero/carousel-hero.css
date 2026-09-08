@@ -54,8 +54,10 @@
 .carousel-hero .carousel-hero-slide-image img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 1;
+
+  /* Reference hero renders ~1440x400 (a wide, short banner). Fix the height so
+     the image never grows into a tall panel that the title overlaps. */
+  height: 400px;
   object-fit: cover;
 }
 

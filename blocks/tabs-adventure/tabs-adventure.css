@@ -76,8 +76,10 @@
 }
 
 /* Adventure cards grid inside the panel (same teaser-card layout as the
-   cards-teaser block: image on top, linked title, short description). */
-.tabs-adventure .tabs-adventure-panel ul {
+   cards-teaser block: image on top, linked title, short description). Scoped to
+   lists that actually contain card images — the "What to Bring" tab is a plain
+   bulleted text list (no images) and must keep normal list styling. */
+.tabs-adventure .tabs-adventure-panel ul:has(img) {
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px 14px;
@@ -86,20 +88,35 @@
   list-style: none;
 }
 
-.tabs-adventure .tabs-adventure-panel ul > li {
+.tabs-adventure .tabs-adventure-panel ul:has(img) > li {
   margin: 0;
   padding: 0;
   min-width: 0;
   list-style: none;
 }
 
+/* Plain text list (e.g. "What to Bring"): simple single-column bulleted list,
+   matching the reference. */
+.tabs-adventure .tabs-adventure-panel ul:not(:has(img)) {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: disc;
+}
+
+.tabs-adventure .tabs-adventure-panel ul:not(:has(img)) > li {
+  margin: 0 0 8px;
+  font-size: var(--body-font-size-m); /* 18px */
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
 /* card image: fixed WKND teaser ratio, cropped */
-.tabs-adventure .tabs-adventure-panel ul > li > p:first-child {
+.tabs-adventure .tabs-adventure-panel ul:has(img) > li > p:first-child {
   margin: 0;
   line-height: 0;
 }
 
-.tabs-adventure .tabs-adventure-panel ul > li img {
+.tabs-adventure .tabs-adventure-panel ul:has(img) > li img {
   display: block;
   width: 100%;
   aspect-ratio: 13 / 10;
@@ -110,7 +127,7 @@
    trailing description text is clamped to a single line with an ellipsis
    (matches the source teaser cards). */
 /* stylelint-disable-next-line no-descending-specificity */
-.tabs-adventure .tabs-adventure-panel ul > li > p:last-child {
+.tabs-adventure .tabs-adventure-panel ul:has(img) > li > p:last-child {
   margin: 0;
   min-width: 0;
   font-size: 14px;
@@ -125,7 +142,7 @@
 /* linked card title on its own line above the description; the title must wrap
    normally (only the trailing description text is clamped to one line) */
 /* stylelint-disable-next-line no-descending-specificity */
-.tabs-adventure .tabs-adventure-panel ul > li > p:last-child a {
+.tabs-adventure .tabs-adventure-panel ul:has(img) > li > p:last-child a {
   display: block;
   margin: 9px 0 16px;
   color: var(--text-color);
@@ -137,19 +154,19 @@
   white-space: normal;
 }
 
-.tabs-adventure .tabs-adventure-panel ul > li > p:last-child a:hover,
-.tabs-adventure .tabs-adventure-panel ul > li > p:last-child a:focus-visible {
+.tabs-adventure .tabs-adventure-panel ul:has(img) > li > p:last-child a:hover,
+.tabs-adventure .tabs-adventure-panel ul:has(img) > li > p:last-child a:focus-visible {
   text-decoration: underline;
 }
 
 @media (width >= 600px) {
-  .tabs-adventure .tabs-adventure-panel ul {
+  .tabs-adventure .tabs-adventure-panel ul:has(img) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (width >= 900px) {
-  .tabs-adventure .tabs-adventure-panel ul {
+  .tabs-adventure .tabs-adventure-panel ul:has(img) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
