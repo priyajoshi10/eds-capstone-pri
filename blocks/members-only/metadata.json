@@ -12,12 +12,13 @@
     "colorScheme": "light",
     "density": "spacious",
     "purpose": "gated-teaser",
-    "imagePattern": "none"
+    "imagePattern": "below-text",
+    "decoration": "yellow-corner-ribbon-with-lock"
   },
   "contentPattern": {
-    "structure": "heading + short description + Read More (no image)",
+    "structure": "heading + short description + grey Read More pill + image below; yellow lock ribbon overlay",
     "buttonCount": 1,
-    "imageCount": 0,
+    "imageCount": 1,
     "cardsPerRow": 2
   },
   "reuseGuidance": {

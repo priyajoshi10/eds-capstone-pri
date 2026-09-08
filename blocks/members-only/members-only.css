@@ -1,6 +1,8 @@
 /* members-only — the two gated teasers below "Members Only" on the magazine
-   page. The source renders them as clean side-by-side text teasers (heading +
-   short description + yellow Read More button), no image, no box. */
+   page. The source renders each as: an uppercase heading, a short description,
+   a grey "locked" Read More pill, and a 360x200 teaser image below — with a
+   yellow corner ribbon carrying a black padlock over the top-left of the card
+   (the "secure/members-only" signal). Values from wknd.site computed styles. */
 
 .members-only > ul {
   list-style: none;
@@ -8,7 +10,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 40px;
 }
 
 @media (width >= 600px) {
@@ -18,14 +20,46 @@
   }
 }
 
+/* Card: relative so the yellow lock ribbon can pin to the top-left corner. */
 .members-only .members-only-card {
+  position: relative;
   margin: 0;
   padding: 0;
 }
 
-/* heading — sans, 18px, dark (matches source) */
+/* Yellow corner ribbon (triangle) — the "secure" flag. */
+.members-only .members-only-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  border-top: 56px solid #ffea00;
+  border-right: 56px solid transparent;
+}
+
+/* Black padlock glyph sitting on the ribbon. */
+.members-only .members-only-card::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23202020"><path d="M12 2a5 5 0 0 0-5 5v3H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-1V7a5 5 0 0 0-5-5zm3 8H9V7a3 3 0 0 1 6 0v3z"/></svg>');
+}
+
+/* heading — sans, 18px, dark uppercase (matches source cmp-teaser__title).
+   Left padding clears the corner ribbon. */
 .members-only .members-only-card-body h3 {
-  margin: 0 0 8px;
+  margin: 0 0 9px;
+  padding-left: 44px;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m); /* 18px */
   font-weight: 600;
@@ -63,4 +97,18 @@
 
 .members-only .members-only-card-body p:last-child {
   margin-bottom: 0;
+}
+
+/* Teaser image below the text — 360x200 in the source, fluid here. */
+.members-only .members-only-card-image {
+  margin-top: 24px;
+  line-height: 0;
+}
+
+.members-only .members-only-card-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 360 / 200;
+  object-fit: cover;
+  display: block;
 }
