@@ -122,7 +122,10 @@ h6 {
 }
 
 h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
+
+/* h5 eyebrows (contributor occupation, "SHARE THIS ..." ) render at 14px in the
+   reference, not 16px. */
+h5 { font-size: var(--heading-font-size-xs); }
 h6 { font-size: var(--heading-font-size-xs); }
 
 p,
