@@ -441,16 +441,17 @@ main > .section:last-of-type {
   margin-bottom: 120px;
 }
 
-/* FAQ two-column row: accordion (left) + "Need more help?" (right), via a
-   `style | faq-columns` section-metadata marker. The section is the grid
-   container and its two wrappers (accordion, help) are the columns. The
-   section normally caps its inner wrapper at content width; widen it here so
-   the two columns share the full row. Stacks on mobile. */
+/* FAQ two-column layout, via a `style | faq-columns` section-metadata marker.
+   The section holds three wrappers: the intro (FAQs heading + image + intro
+   copy), the accordion, and the "Need more help?" panel. The source stacks the
+   intro + accordion in a wide LEFT column while "Need more help?" sits in a
+   narrower RIGHT column starting at the very top row. We drive that with
+   explicit grid placement. Stacks in source order on mobile. */
 @media (width >= 900px) {
   main .section.faq-columns {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 48px;
+    column-gap: 48px;
     align-items: start;
     max-width: var(--content-max-width, 1200px);
     margin: 40px auto;
@@ -461,5 +462,23 @@ main > .section:last-of-type {
     max-width: none;
     margin: 0;
     padding: 0;
+  }
+
+  /* Intro (heading + image + intro copy): left column, top row. */
+  main .section.faq-columns > div:first-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Accordion: left column, below the intro. */
+  main .section.faq-columns > .accordion-faq-wrapper {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* "Need more help?": right column, spanning from the top. */
+  main .section.faq-columns > div:last-child {
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 }
