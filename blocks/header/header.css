@@ -400,21 +400,26 @@ header nav .nav-tools p {
 }
 
 header nav .nav-search {
+  position: relative;
   display: flex;
   width: 100%;
 }
 
 header nav .nav-search input {
   width: 100%;
+  height: 42px;
   box-sizing: border-box;
-  border: 1px solid #d8d8d8;
+
+  /* Match the reference: no border, translucent light-grey fill, square. */
+  border: 0;
   border-radius: 0;
 
-  /* leave room on the left for the magnifying-glass icon (source) */
-  padding: 10px 14px 10px 36px;
+  /* 1px top/bottom, 32px sides — the left inset holds the magnifier (source). */
+  padding: 1px 32px;
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-xs);
-  background-color: var(--light-color);
+  font-size: 12px;
+  color: var(--text-color); /* #202020 */
+  background-color: rgb(235 235 235 / 54%);
 
   /* magnifying-glass icon at the left of the field, matching the source */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1152" fill="%23202020"><path d="M672 0C406.903 0 192 214.903 192 480c0 95.7 28.011 184.855 76.275 259.725C181.646 826.354 48.075 959.925 36 972c-18 18-36 36-36 72s18 54 36 72 36.012 36 72 36 54-18 72-36c12.075-12.075 145.646-145.646 232.275-232.275C487.144 931.988 576.3 960 672 960c265.097 0 480-214.903 480-480C1152 214.903 937.097 0 672 0zm0 816c-185.568 0-336-150.433-336-336 0-185.568 150.432-336 336-336 185.567 0 336 150.432 336 336C1008 665.567 857.567 816 672 816z"/></svg>');
@@ -422,6 +427,47 @@ header nav .nav-search input {
   background-position: 12px center;
   background-size: 15px 15px;
 }
+
+/* Autocomplete results — dark dropdown panel, matching the source
+   (cmp-search__results, background rgb(32,32,32)). Positioning handled on the
+   .nav-search wrapper above. stylelint-disable ordering below: these are new
+   search selectors that logically belong here, not before the nav-utility
+   rules the linter suggests. */
+/* stylelint-disable no-descending-specificity */
+header nav .nav-search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: rgb(32 32 32);
+}
+
+header nav .nav-search-results[hidden] {
+  display: none;
+}
+
+header nav .nav-search-results li {
+  margin: 0;
+  padding: 0;
+}
+
+header nav .nav-search-results a {
+  display: block;
+  padding: 10px 16px;
+  color: #fff;
+  font-size: var(--body-font-size-xs);
+  text-decoration: none;
+}
+
+header nav .nav-search-results a:hover,
+header nav .nav-search-results a:focus {
+  background-color: rgb(64 64 64);
+}
+/* stylelint-enable no-descending-specificity */
 
 @media (width >= 900px) {
   /* Pin the header to the top while scrolling (source uses position:fixed).
@@ -548,7 +594,7 @@ header nav .nav-search input {
   }
 
   header nav .nav-search input {
-    width: 220px;
+    width: 166px;
   }
 
   /* utility bar spans the full viewport width above the logo/nav row.

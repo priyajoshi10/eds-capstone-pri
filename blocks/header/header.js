@@ -35,6 +35,18 @@ function toggleMenu(nav, force) {
  * Form controls live in JS (not the plain fragment) per the nav contract.
  * @param {Element} toolsSection the tools section element
  */
+let searchIndexPromise;
+/** Lazily fetch the committed search index (list of pages) once. */
+function loadSearchIndex() {
+  if (!searchIndexPromise) {
+    searchIndexPromise = fetch('/search-index.json')
+      .then((r) => (r.ok ? r.json() : { data: [] }))
+      .then((j) => (Array.isArray(j.data) ? j.data : []))
+      .catch(() => []);
+  }
+  return searchIndexPromise;
+}
+
 function decorateSearch(toolsSection) {
   if (!toolsSection) return;
   const placeholder = [...toolsSection.querySelectorAll('p')]
@@ -50,8 +62,56 @@ function decorateSearch(toolsSection) {
   input.name = 'fulltext';
   input.placeholder = 'Search';
   input.setAttribute('aria-label', 'Search');
-  form.append(input);
+  input.setAttribute('role', 'combobox');
+  input.setAttribute('aria-autocomplete', 'list');
+  input.setAttribute('aria-expanded', 'false');
+  input.setAttribute('autocomplete', 'off');
+
+  // Live-autocomplete results panel (dark dropdown), matching the source.
+  const results = document.createElement('ul');
+  results.className = 'nav-search-results';
+  results.setAttribute('role', 'listbox');
+  results.hidden = true;
+
+  form.append(input, results);
   placeholder.replaceWith(form);
+
+  const closeResults = () => {
+    results.hidden = true;
+    results.replaceChildren();
+    input.setAttribute('aria-expanded', 'false');
+  };
+
+  const render = (matches) => {
+    if (!matches.length) { closeResults(); return; }
+    results.replaceChildren(...matches.map((m) => {
+      const li = document.createElement('li');
+      li.setAttribute('role', 'option');
+      const a = document.createElement('a');
+      a.href = m.path;
+      a.textContent = m.title;
+      li.append(a);
+      return li;
+    }));
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  };
+
+  const onInput = async () => {
+    const q = input.value.trim().toLowerCase();
+    if (q.length < 2) { closeResults(); return; }
+    const index = await loadSearchIndex();
+    const matches = index
+      .filter((p) => `${p.title} ${p.description}`.toLowerCase().includes(q))
+      .slice(0, 6);
+    render(matches);
+  };
+
+  input.addEventListener('input', onInput);
+  input.addEventListener('focus', onInput);
+  // Close on outside click or Escape.
+  document.addEventListener('click', (e) => { if (!form.contains(e.target)) closeResults(); });
+  input.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeResults(); });
 }
 
 /**
