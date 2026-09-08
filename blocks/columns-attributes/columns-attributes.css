@@ -15,7 +15,10 @@
  * the value, matching the source sidebar. */
 .columns-attributes > div {
   display: block;
-  margin: 0 0 22.5px;
+
+  /* Reference row rhythm: each label+value cell is ~58px and rows repeat every
+     ~106px, i.e. ~48px vertical gap between rows. */
+  margin: 0 0 48px;
   padding: 0 0 0 18px;
   border-left: 5px solid #ebebeb;
 }
