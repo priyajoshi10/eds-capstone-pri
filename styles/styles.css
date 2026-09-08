@@ -444,6 +444,12 @@ main .section.article .default-content-wrapper > blockquote {
   line-height: 1.5;
 }
 
+/* Index-driven listing block found no content for the current locale/folder:
+   hide the whole section (heading + CTA) rather than show an empty grid. */
+main .section[data-empty-index-cards='true'] {
+  display: none;
+}
+
 /* Generous whitespace between the last content section and the footer,
    matching the source's airy gap above the footer (~178px total). */
 main > .section:last-of-type {

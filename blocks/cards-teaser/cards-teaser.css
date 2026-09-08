@@ -72,6 +72,13 @@
   text-decoration: underline;
 }
 
+/* "All Articles" / "All Trips" CTA below the grid (left-aligned, matches the
+   reference). The button itself picks up the global a.button yellow style. */
+.cards-teaser .cards-teaser-cta {
+  margin: 32px 0 0;
+  text-align: left;
+}
+
 @media (width >= 600px) {
   .cards-teaser ul {
     grid-template-columns: repeat(2, 1fr);
