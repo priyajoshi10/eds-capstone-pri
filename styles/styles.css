@@ -68,7 +68,7 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.5; /* matches the WKND reference body line-height (18px -> 27px) */
 }
 
 body.appear {
