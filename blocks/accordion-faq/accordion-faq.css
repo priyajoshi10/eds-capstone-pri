@@ -33,15 +33,16 @@ main .section.accordion-faq-container .default-content-wrapper img {
 }
 
 /* Question row (summary) -- source renders questions in the body sans font at
-   ~16px, not the large serif heading. */
+   ~16px (not the large serif heading), uppercase and semibold (weight 600). */
 .accordion-faq .accordion-faq-item-label {
   position: relative;
   display: block;
   padding: 16px 46px 16px 8px;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s); /* 16px */
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.5;
+  text-transform: uppercase;
   color: var(--text-color);
   cursor: pointer;
   list-style: none;

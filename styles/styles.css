@@ -40,6 +40,10 @@
   --heading-font-size-s: 16px;
   --heading-font-size-xs: 14px;
 
+  /* content column width — the WKND reference constrains page content to a
+     ~1164px grid (not the boilerplate default 1200px). */
+  --content-max-width: 1164px;
+
   /* nav height */
   --nav-height: 88px;
 }
