@@ -43,17 +43,22 @@
   color: var(--text-color);
 }
 
-/* Read More — WKND flat yellow button */
+/* Read More — the source renders this as a muted grey "locked" pill (gated
+   content), not the bright yellow CTA used elsewhere. */
 .members-only .members-only-card-body p a:any-link {
   display: inline-block;
-  padding: 14px 35px;
-  background-color: var(--accent-color); /* #ffea00 */
-  color: var(--accent-text-color);
+  padding: 7px 14px;
+  background-color: var(--dark-text-color); /* #ebebeb */
+  color: rgb(105 105 105); /* #696969 */
   font-size: var(--body-font-size-xs); /* 14px */
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+.members-only .members-only-card-body p a:hover {
+  background-color: #e0e0e0;
 }
 
 .members-only .members-only-card-body p:last-child {
