@@ -11,8 +11,9 @@
    - Date (cmp-list__item-date): 12px/18px, weight 400, UPPERCASE, #696969.
    - Item link padded 8px 16px; items separated by 18px margin; ul margin 18px 0.
 
-   Migrated (decorated) DOM:
-   .cards-related > ul > li > div.cards-related-card-body > (h3 > a) + p */
+   Migrated (decorated) DOM (title is a non-heading <p><a> to match the
+   reference's cmp-list__item-title span — NOT a heading):
+   .cards-related > ul > li > div.cards-related-card-body > (p > a) + p */
 
 .cards-related {
   padding: 8px 0 0;
@@ -38,9 +39,10 @@
   padding: 8px 16px;
 }
 
-/* Story title — sans-serif, regular weight, uppercase, dark (matches source
-   span override). Overrides the global serif/bold h3 and the blue a:any-link. */
-.cards-related .cards-related-card-body h3 {
+/* Story title — the title <p> is the one containing the article link. Matches
+   the reference's non-heading cmp-list__item-title span: sans-serif, regular
+   weight, uppercase, dark. */
+.cards-related .cards-related-card-body p:has(a) {
   margin: 0;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m); /* 18px */
@@ -50,20 +52,20 @@
   color: var(--text-color); /* #202020 */
 }
 
-.cards-related .cards-related-card-body h3 a,
-.cards-related .cards-related-card-body h3 a:any-link {
+.cards-related .cards-related-card-body p > a,
+.cards-related .cards-related-card-body p > a:any-link {
   color: inherit;
   font: inherit;
   text-transform: inherit;
   text-decoration: none;
 }
 
-.cards-related .cards-related-card-body h3 a:hover {
+.cards-related .cards-related-card-body p > a:hover {
   text-decoration: underline;
 }
 
-/* Publication date — smaller grey uppercase text */
-.cards-related .cards-related-card-body p {
+/* Publication date — the <p> with no link. Smaller grey uppercase text. */
+.cards-related .cards-related-card-body p:not(:has(a)) {
   margin: 0;
   font-family: var(--body-font-family);
   font-size: 12px;

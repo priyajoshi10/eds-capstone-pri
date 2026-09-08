@@ -55,9 +55,9 @@
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23202020"><path d="M12 2a5 5 0 0 0-5 5v3H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-1V7a5 5 0 0 0-5-5zm3 8H9V7a3 3 0 0 1 6 0v3z"/></svg>');
 }
 
-/* heading — sans, 18px, dark uppercase (matches source cmp-teaser__title).
-   Left padding clears the corner ribbon. */
-.members-only .members-only-card-body h3 {
+/* heading — sans, 18px, dark uppercase (matches source cmp-teaser__title,
+   which is an h2). Left padding clears the corner ribbon. */
+.members-only .members-only-card-body h2 {
   margin: 0 0 9px;
   padding-left: 44px;
   font-family: var(--body-font-family);

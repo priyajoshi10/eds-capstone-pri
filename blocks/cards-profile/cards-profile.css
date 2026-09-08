@@ -52,7 +52,9 @@
   margin-top: 16px;
 }
 
-/* Name */
+/* Name — about-us contributor cards author it as h3, article bylines as h2
+   (matching each reference context). Style both identically. */
+.cards-profile .cards-profile-card-body h2,
 .cards-profile .cards-profile-card-body h3 {
   margin: 0 0 6px;
   font-size: var(--heading-font-size-l); /* 24px */
@@ -60,8 +62,12 @@
   line-height: 36px;
 }
 
-/* Role — uppercase eyebrow */
-.cards-profile .cards-profile-card-body h5 {
+/* Role / occupation — uppercase eyebrow. about-us authors it as h5; article
+   bylines as a plain <p> (the reference's cmp-byline__occupations paragraph).
+   The social links are collected into .cards-profile-social by the block JS,
+   so a direct-child <p> here is only ever the occupation line. */
+.cards-profile .cards-profile-card-body h5,
+.cards-profile .cards-profile-card-body > p {
   margin: 0 0 4px;
   font-size: var(--heading-font-size-xs); /* 14px */
   font-weight: 600;
