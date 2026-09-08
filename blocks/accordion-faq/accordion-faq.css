@@ -15,8 +15,10 @@
 
 /* FAQ intro image: the source caps it to the reading width (~748px) rather
    than the full content column. Scope to the FAQ section so other pages are
-   unaffected. */
+   unaffected. width:100% keeps it fluid below 748px so it never overflows
+   narrow (mobile/tablet) viewports. */
 main .section.accordion-faq-container .default-content-wrapper img {
+  width: 100%;
   max-width: 748px;
   height: auto;
 }
