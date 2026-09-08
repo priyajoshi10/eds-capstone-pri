@@ -69,13 +69,18 @@
   text-transform: uppercase;
 }
 
-/* Social links — authored as separate <p><a> siblings. Lay them out as a
-   single continuous bar of dark square icon buttons sitting flush together
-   (no gaps), matching the source. The first item carries the top margin. */
+/* Social links — authored as separate <p><a> siblings, collected by the block
+   JS into a single .cards-profile-social flex row so the dark square icons butt
+   up against each other as one continuous bar (no inter-element whitespace). */
+.cards-profile .cards-profile-card-body .cards-profile-social {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  margin-top: 12px;
+}
+
 .cards-profile .cards-profile-card-body p.cards-profile-social-item {
-  display: inline-block;
-  margin: 12px 0 0;
-  vertical-align: top;
+  margin: 0;
   line-height: 0;
 }
 

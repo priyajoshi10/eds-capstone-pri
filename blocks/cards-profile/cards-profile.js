@@ -26,15 +26,27 @@ export default function decorate(block) {
 
   // Contributor social links are authored as plain text ("Facebook", "Twitter",
   // "Instagram") in their own <p>. Tag each with the platform so the CSS can
-  // render a dark icon button, and mark the row so the <p>s lay out inline.
+  // render a dark icon button, then collect the <p>s into a single flex row so
+  // the icons butt up against each other as one continuous dark bar (no gaps
+  // from inter-element whitespace).
   ul.querySelectorAll('.cards-profile-card-body').forEach((body) => {
-    const socialLinks = [...body.querySelectorAll(':scope > p > a')]
-      .filter((a) => /^(facebook|twitter|instagram)$/i.test(a.textContent.trim()));
-    socialLinks.forEach((a) => {
+    const socialItems = [...body.querySelectorAll(':scope > p')]
+      .filter((p) => {
+        const a = p.querySelector(':scope > a');
+        return a && /^(facebook|twitter|instagram)$/i.test(a.textContent.trim());
+      });
+    if (!socialItems.length) return;
+
+    const row = document.createElement('div');
+    row.className = 'cards-profile-social';
+    body.insertBefore(row, socialItems[0]);
+    socialItems.forEach((p) => {
+      const a = p.querySelector(':scope > a');
       const platform = a.textContent.trim().toLowerCase();
       a.dataset.social = platform;
       a.setAttribute('aria-label', a.textContent.trim());
-      a.closest('p').classList.add('cards-profile-social-item');
+      p.classList.add('cards-profile-social-item');
+      row.append(p);
     });
   });
 
