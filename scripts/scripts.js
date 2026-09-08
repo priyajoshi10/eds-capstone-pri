@@ -167,6 +167,24 @@ function fixInternalLinks(main) {
 }
 
 /**
+ * Tags the page breadcrumb so it can be styled as a horizontal trail (matching
+ * the source: uppercase dark links separated by a yellow arrow) instead of the
+ * default numbered <ol>. The breadcrumb is an <ol> near the top of <main> whose
+ * items are a trail of links ending in a plain-text current page.
+ * @param {Element} main The main element
+ */
+function decorateBreadcrumb(main) {
+  const ol = main.querySelector(':scope > div:first-child ol, :scope > div:nth-child(2) ol');
+  if (!ol || ol.closest('.block')) return;
+  const items = [...ol.children].filter((li) => li.tagName === 'LI');
+  // A breadcrumb has at least two items and its last item is not a link.
+  if (items.length < 2) return;
+  const last = items[items.length - 1];
+  if (last.querySelector('a')) return;
+  ol.classList.add('breadcrumb');
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -178,6 +196,7 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateButtons(main);
   fixInternalLinks(main);
+  decorateBreadcrumb(main);
 }
 
 /**

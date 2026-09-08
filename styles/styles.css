@@ -542,3 +542,42 @@ main .section:has(+ .section.adventure-detail) > .default-content-wrapper > h1::
   width: 84px;
   border-bottom: 2px solid var(--accent-color);
 }
+
+/* Breadcrumb trail (tagged by decorateBreadcrumb in scripts.js). The reference
+   renders it as a horizontal row of uppercase 14px dark links, no list numbers,
+   with a yellow right-pointing arrow separating items. */
+main ol.breadcrumb {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main ol.breadcrumb > li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font-size: var(--body-font-size-xs); /* 14px */
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-color);
+}
+
+/* Yellow arrow separator before every item except the first. */
+main ol.breadcrumb > li + li::before {
+  content: '\25B8'; /* ▸ */
+  margin: 0 10px;
+  color: var(--accent-color);
+}
+
+/* stylelint-disable no-descending-specificity */
+main ol.breadcrumb > li a,
+main ol.breadcrumb > li a:any-link {
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+main ol.breadcrumb > li a:hover {
+  text-decoration: underline;
+}
+/* stylelint-enable no-descending-specificity */
